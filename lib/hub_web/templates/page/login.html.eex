@@ -1,0 +1,13 @@
+<div class="login-logo-container">
+Logo will be here
+</div>
+<form action="<%= Routes.admin_path @conn, :sign_in %>" method="post" class="form-container form-login">
+  <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+  <label for="username" class="form-label form-label-login">
+    <input class="form-input" type="text" name="username" id="username" required placeholder="username" aria-label="enter your username">
+  </label>
+  <label for="password" class="form-label form-label-password">
+    <input class="form-input" type="password" name="password" id="password" required placeholder="password" aria-label="enter your password">
+  </label>
+  <button type="submit" class="button form-button">Login</button>
+</form>
