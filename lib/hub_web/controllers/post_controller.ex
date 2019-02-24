@@ -26,7 +26,7 @@ defmodule HubWeb.PostController do
         {:ok, post} ->
           conn
           |> put_status(:created)
-          |> render("show.json", post: post)
+          |> render("success.json")
 
         {:error, %Ecto.Changeset{} = changeset} ->
           conn

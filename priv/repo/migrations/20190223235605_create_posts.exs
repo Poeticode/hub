@@ -5,7 +5,7 @@ defmodule Hub.Repo.Migrations.CreatePosts do
     create table(:posts) do
       add :author, :string
       add :title, :string
-      add :content, :string
+      add :content, :text
       add :approved, :boolean, default: false, null: false
 
       timestamps()

@@ -5,7 +5,7 @@ defmodule Hub.Content.Post do
 
   schema "posts" do
     field :author, :string
-    field :content, :string
+    field :content, :text
     field :title, :string
     field :approved, :boolean, default: false
 

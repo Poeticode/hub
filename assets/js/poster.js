@@ -3,7 +3,7 @@ const author = document.querySelector("#post_author");
 const title = document.querySelector("#post_title");
 const content = document.querySelector("#post_content");
 const token = document.querySelector("#token");
-const errors = document.querySelector("#post_errors");
+const result = document.querySelector("#post_errors");
 
 if (post_button) {
     console.log("setting up btn");
@@ -26,20 +26,24 @@ function handlePostSubmission() {
             console.log(data);
             if (data.errors) {
                 handleErrors(data.errors);
+            } else {
+                if (data.message) {
+                    result.innerHTML += data.message;
+                }
             }
             // console.log(JSON.stringify(data))
         }) // JSON-string from `response.json()` call
         .catch((errors) => {
             console.log(errors);
-            
-            
         });
 }
 
 function handleErrors(error) {
     let all_errors = ""
     if (!error) return;
-    console.log(error.author);
+    if (error.detail) {
+        all_errors += `${error.detail}, `;
+    }
     if (error.author) {
         // we got some author problems
         error.author.forEach(err => {
@@ -58,7 +62,7 @@ function handleErrors(error) {
             all_errors += `Content ${err}, `;
         });
     }
-    errors.innerHTML = all_errors;
+    result.innerHTML = all_errors;
 }
 
 // stolen from https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
