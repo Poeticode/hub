@@ -30,7 +30,9 @@ defmodule HubWeb.PostController do
 
         {:error, %Ecto.Changeset{} = changeset} ->
           conn
-          |> render(HubWeb.ErrorView, "401.json", message: "Error processing post")
+            |> put_status(:unprocessable_entity)
+            |> put_view(HubWeb.ChangesetView)
+            |> render("error.json", changeset: changeset)
       end
     end
   end

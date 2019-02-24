@@ -4,3 +4,10 @@
 nav ul li {
     display: inline-block;
 }
+.divider { 
+    border: 0.25rem solid #999;
+}
+
+textarea {
+    height: auto;
+}

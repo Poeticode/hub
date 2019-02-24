@@ -28,7 +28,7 @@ function handlePostSubmission() {
                 handleErrors(data.errors);
             } else {
                 if (data.message) {
-                    result.innerHTML += data.message;
+                    result.innerHTML = data.message;
                 }
             }
             // console.log(JSON.stringify(data))
