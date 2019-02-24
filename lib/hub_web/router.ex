@@ -16,12 +16,32 @@ defmodule HubWeb.Router do
   scope "/", HubWeb do
     pipe_through :browser
 
-    get "/", PageController, :login
+    get "/", PageController, :index
+    get "/login", PageController, :login
     post "/login", AdminController, :sign_in
+    post "/create_post", PostController, :create_unapproved
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", HubWeb do
-  #   pipe_through :api
-  # end
+  scope "/admin", HubWeb do
+    pipe_through [:browser, :ensure_admin]
+
+    get "/", PageController, :admin
+    resources "/posts", PostController
+  end
+
+  defp ensure_admin(conn, _opts) do
+    current_admin_id = get_session(conn, :current_admin_id)
+    if current_admin_id do
+      conn
+    else
+      deny_access(conn)
+    end
+  end
+
+  defp deny_access(conn) do
+    conn
+      |> put_status(:unauthorized)
+      |> render(AppWeb.ErrorView, "401.json", message: "Unauthenticated account")
+      |> halt()
+  end
 end

@@ -47,7 +47,7 @@ defmodule HubWeb.AdminController do
         conn
         |> put_session(:current_admin_id, admin.id)
         |> put_status(:ok)
-        |> render(HubWeb.PageView, "index.html")
+        |> render(HubWeb.PageView, "admin.html")
 
       {:error, message} ->
         conn

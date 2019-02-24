@@ -2,3 +2,22 @@
   <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
   <p>A productive web framework that<br/>does not compromise speed and maintainability.</p>
 </section>
+
+<%= for post <- @posts do %>
+  <%= post.title %>
+<%= end %>
+
+<div id="post_submission">
+  <div id="post_errors"></div>
+  <label>Author
+    <input type="text" id="post_author">
+  </label>
+  <label>Title
+    <input type="text" id="post_title">
+  </label>
+  <label>Content
+    <input type="text" id="post_content">
+  </label>
+  <input type="hidden" value="<%= @token %>" name="_csrf_token" id="token" />
+  <button id="post_btn">Submit</button>
+</div>
