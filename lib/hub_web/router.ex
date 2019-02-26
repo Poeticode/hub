@@ -18,9 +18,10 @@ defmodule HubWeb.Router do
 
     get "/", PageController, :index
     get "/login", PageController, :login
-    post "/login", AdminController, :sign_in
-    post "/create_post", PostController, :create_unapproved
-  end
+		post "/login", AdminController, :sign_in
+		get "/new_post", PostController, :new_unapproved
+		post "/new_post", PostController, :create_unapproved
+	end
 
   scope "/admin", HubWeb do
     pipe_through [:browser, :ensure_admin]
@@ -41,7 +42,6 @@ defmodule HubWeb.Router do
   defp deny_access(conn) do
     conn
       |> put_status(:unauthorized)
-      |> render(AppWeb.ErrorView, "401.json", message: "Unauthenticated account")
-      |> halt()
+      |> render(HubWeb.ErrorView, "401.json", message: "Unauthenticated account")
   end
 end

@@ -1,0 +1,20 @@
+<h1>Success!</h1>
+
+<ul>
+  <li>
+    <strong>Author:</strong>
+    <%= @post.author %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @post.title %>
+  </li>
+
+  <li>
+    <strong>Content:</strong>
+    <%= @post.content %>
+  </li>
+</ul>
+
+<h4>Please give us some time to approve your submission</h4>

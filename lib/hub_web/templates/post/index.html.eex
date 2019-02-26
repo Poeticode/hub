@@ -8,6 +8,7 @@
       <th>Title</th>
       <th>Content</th>
       <th>Approved</th>
+			<th>Attachment</th>
       <th></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
       <td><%= post.title %></td>
       <td><%= post.content %></td>
       <Td><%= post.approved %></td>
+			<Td><%= post.filename %></td>
 
       <td>
         <%= link "Show", to: Routes.post_path(@conn, :show, post) %>

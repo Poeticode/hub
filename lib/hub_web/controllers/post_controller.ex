@@ -13,7 +13,12 @@ defmodule HubWeb.PostController do
   def new(conn, _params) do
     changeset = Content.change_post(%Post{})
     render(conn, "new.html", changeset: changeset)
-  end
+	end
+
+	def new_unapproved(conn, _params) do
+		changeset = Content.change_post(%Post{})
+		render(conn, "new_unapproved.html", changeset: changeset)
+	end
 
   def create_unapproved(conn, %{"post" => post_params}) do
     Logger.debug(inspect(post_params))
@@ -23,19 +28,27 @@ defmodule HubWeb.PostController do
         |> render(HubWeb.ErrorView, "401.json", message: "Cannot manually approve post.")
     else
       case Content.create_post(post_params) do
-        {:ok, post} ->
+				{:ok, post} ->
+					# copy over temporary upload to persistent storage
+					if post_params["attachment"] do
+						Logger.debug(inspect(post))
+						File.cp!(post_params["attachment"].path, "uploads/#{post.path}")
+					end
+
           conn
-          |> put_status(:created)
-          |> render("success.json")
+						|> put_flash(:info, "Post created successfully.")
+						|> render("success.html", post: post)
 
         {:error, %Ecto.Changeset{} = changeset} ->
-          conn
-            |> put_status(:unprocessable_entity)
-            |> put_view(HubWeb.ChangesetView)
-            |> render("error.json", changeset: changeset)
+          render(conn, "new_unapproved.html", changeset: changeset)
       end
     end
-  end
+	end
+
+	def success(conn, %{"id" => id}) do
+		post = Content.get_post!(id)
+		render(conn, "success.html", post: post)
+	end
 
   def create(conn, %{"post" => post_params}) do
 
@@ -53,7 +66,7 @@ defmodule HubWeb.PostController do
   def show(conn, %{"id" => id}) do
     post = Content.get_post!(id)
     render(conn, "show.html", post: post)
-  end
+	end
 
   def edit(conn, %{"id" => id}) do
     post = Content.get_post!(id)

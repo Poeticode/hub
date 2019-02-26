@@ -20,9 +20,6 @@ defmodule HubWeb.ErrorView do
   end
 
   def render("400_post.json", %{changeset: changeset}) do
-    Enum.each(changeset.errors, fn ({key, value}) -> 
-      Logger.debug(inspect(value)) 
-    end)
     %{errors: changeset.errors[:author]}
   end
 end
