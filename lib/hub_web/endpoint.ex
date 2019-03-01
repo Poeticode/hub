@@ -15,7 +15,7 @@ defmodule HubWeb.Endpoint do
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
-  plug Plug.Static, 
+  plug Plug.Static,
     at: "/uploads", from: Path.expand("./uploads"), gzip: false
 
   # Code reloading can be explicitly enabled under the
@@ -32,7 +32,7 @@ defmodule HubWeb.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Phoenix.json_library()
+    json_decoder: Poison
 
   plug Plug.MethodOverride
   plug Plug.Head

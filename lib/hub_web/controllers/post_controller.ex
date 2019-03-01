@@ -26,7 +26,8 @@ defmodule HubWeb.PostController do
       conn
         |> put_status(:unauthorized)
         |> render(HubWeb.ErrorView, "401.json", message: "Cannot manually approve post.")
-    else
+		else
+			# TODO: we'll need to validate that they're actually uploading images
       case Content.create_post(post_params) do
 				{:ok, post} ->
 					# copy over temporary upload to persistent storage
@@ -34,6 +35,12 @@ defmodule HubWeb.PostController do
 						Logger.debug(inspect(post))
 						File.cp!(post_params["attachment"].path, "uploads/#{post.path}")
 					end
+
+					Task.async(fn ->
+						# TODO: Have there be a list of emails that we'd send to
+						Hub.Email.new_submission_email(post.title, post.author, post.id, "me@silentsilas.com")
+							|> Hub.Mailer.deliver_now
+					end)
 
           conn
 						|> put_flash(:info, "Post created successfully.")
