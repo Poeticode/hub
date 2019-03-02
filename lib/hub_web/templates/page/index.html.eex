@@ -13,3 +13,5 @@
 
   </div>
 <% end %>
+
+<%= pagination_links @page %>

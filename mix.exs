@@ -20,7 +20,7 @@ defmodule Hub.MixProject do
   def application do
     [
       mod: {Hub.Application, []},
-      extra_applications: [:logger, :runtime_tools, :bamboo]
+      extra_applications: [:logger, :runtime_tools, :bamboo, :scrivener_html, :scrivener_ecto]
     ]
   end
 
@@ -45,7 +45,9 @@ defmodule Hub.MixProject do
       {:jason, "~> 1.0"},
 			{:plug_cowboy, "~> 2.0"},
 			{:bamboo, "~> 1.2"},
-			{:poison, "~> 3.1"}
+			{:poison, "~> 3.1"},
+			{:scrivener_ecto, "~> 2.0"},
+			{:scrivener_html, "~> 1.8"}
     ]
   end
 

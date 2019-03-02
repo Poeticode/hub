@@ -3,7 +3,6 @@ defmodule Hub.Content.Post do
 	require Logger
   import Ecto.Changeset
 
-
   schema "posts" do
     field :author, :string
     field :content, :string

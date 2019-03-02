@@ -1,5 +1,6 @@
 defmodule HubWeb.PostView do
-  use HubWeb, :view
+	use HubWeb, :view
+	import Scrivener.HTML
   alias HubWeb.PostView
 
   def render("success.json", _) do
