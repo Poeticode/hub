@@ -73,7 +73,23 @@ defmodule HubWeb.PostController do
   def show(conn, %{"id" => id}) do
     post = Content.get_post!(id)
     render(conn, "show.html", post: post)
-	end
+  end
+
+  def general_show(conn, %{"id" => id}) do
+    post =  Content.get_post(id)
+    if post != nil do
+      if post.approved == true do
+        conn
+        |> render("general_show.html", post: post)
+      else
+        conn
+        |> render(HubWeb.ErrorView, "401.json", message: "Couldn't find post")
+      end
+    else
+      conn
+      |> render(HubWeb.ErrorView, "401.json", message: "Couldn't find post")
+    end
+  end
 
   def edit(conn, %{"id" => id}) do
     post = Content.get_post!(id)

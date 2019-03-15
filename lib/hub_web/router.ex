@@ -20,7 +20,8 @@ defmodule HubWeb.Router do
     get "/login", PageController, :login
 		post "/login", AdminController, :sign_in
 		get "/new_post", PostController, :new_unapproved
-		post "/new_post", PostController, :create_unapproved
+    post "/new_post", PostController, :create_unapproved
+    get "/submissions/:id", PostController, :general_show
 	end
 
   scope "/admin", HubWeb do

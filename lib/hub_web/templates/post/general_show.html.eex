@@ -1,0 +1,25 @@
+<ul>
+
+    <li>
+        <strong>Author:</strong>
+        <%= @post.author %>
+    </li>
+
+    <li>
+        <strong>Title:</strong>
+        <%= @post.title %>
+    </li>
+
+    <li>
+        <%= @post.content %>
+    </li>
+
+    <%= if @post.path do %>
+	<li>
+		<img src="/uploads/<%= @post.path %>" />
+	</li>
+	<% end %>
+</ul>
+
+<div id="commento"></div>
+<script src="https://commento.chattanoogapoetscollective.com/js/commento.js"></script>

@@ -1,11 +1,11 @@
 <%= for post <- @posts do %>
   <div class="post">
     <div class="title">
-      <h3><%= post.title %></h3>
+      <h3><a href="/submissions/<%= post.id %>"><%= post.title %></a></h3>
       <h6>by <%= post.author %> (<%= post.updated_at %>)</h3>
     </div>
     <div class="content">
-      <p><%= post.content %></p>
+      <p><%= post.content |> String.slice(0, 255) |> String.trim_trailing %>...</p>
     </div>
 		<%= if post.path do %>
 			<img src="/uploads/<%= post.path %>" />
