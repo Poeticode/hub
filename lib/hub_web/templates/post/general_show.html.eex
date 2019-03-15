@@ -1,24 +1,16 @@
-<ul>
-
-    <li>
-        <strong>Author:</strong>
-        <%= @post.author %>
-    </li>
-
-    <li>
-        <strong>Title:</strong>
-        <%= @post.title %>
-    </li>
-
-    <li style="white-space: pre-wrap;">
-        <%= @post.content %>
-    </li>
+<div class="post">
+    <div class="title">
+        <strong><%= @post.title %></strong> by <strong><%= @post.author %></strong>
+    </div>
 
     <%= if @post.path do %>
-	<li>
+    <div class="attachment">
 		<img src="/uploads/<%= @post.path %>" />
-	</li>
+	</div>
 	<% end %>
+    <div class="content" style="white-space: pre-wrap;">
+        <%= @post.content %>
+    </div>
 </ul>
 
 <div id="commento"></div>
