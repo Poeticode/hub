@@ -10,7 +10,7 @@
         <%= @post.title %>
     </li>
 
-    <li>
+    <li style="white-space: pre-wrap;">
         <%= @post.content %>
     </li>
 
