@@ -4,13 +4,14 @@
       <h3><a href="/submissions/<%= post.id %>"><%= post.title %></a></h3>
       <h6>by <%= post.author %> (<%= post.updated_at %>)</h3>
     </div>
+    <%= if post.path do %>
+    <div class="attachment">
+			<img src="/uploads/<%= post.path %>" />
+    </div>
+		<% end %>
     <div class="content" style="white-space: pre-wrap;">
       <p><%= post.content |> String.slice(0, 255) |> String.trim_trailing %>...</p>
     </div>
-		<%= if post.path do %>
-			<img src="/uploads/<%= post.path %>" />
-		<% end %>
-
   </div>
 <% end %>
 
