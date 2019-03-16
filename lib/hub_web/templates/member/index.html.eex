@@ -1,0 +1,42 @@
+<h1>Listing Members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Website</th>
+      <th>Approved</th>
+      <th>Instagram</th>
+      <th>Facebook</th>
+      <th>Twitter</th>
+      <th>Mastodon</th>
+      <th>Bio</th>
+      <th>Edit url</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for member <- @members do %>
+    <tr>
+      <td><%= member.name %></td>
+      <td><%= member.website %></td>
+      <td><%= member.approved %></td>
+      <td><%= member.instagram %></td>
+      <td><%= member.facebook %></td>
+      <td><%= member.twitter %></td>
+      <td><%= member.mastodon %></td>
+      <td><%= member.bio %></td>
+      <td><%= member.edit_url %></td>
+
+      <td>
+        <%= link "Show", to: Routes.member_path(@conn, :show, member) %>
+        <%= link "Edit", to: Routes.member_path(@conn, :edit, member) %>
+        <%= link "Delete", to: Routes.member_path(@conn, :delete, member), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Member", to: Routes.member_path(@conn, :new) %></span>

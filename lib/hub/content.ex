@@ -112,5 +112,27 @@ defmodule Hub.Content do
   """
   def change_post(%Post{} = post) do
     Post.changeset(post, %{})
-  end
+	end
+
+	def search_posts(query) do
+		Repo.all from p in Post,
+			where: ilike(p.title, ^"%#{String.replace(query, "%", "\\%")}%") or
+						 ilike(p.content, ^"%#{String.replace(query, "%", "\\%")}%") or
+						 ilike(p.author, ^"%#{String.replace(query, "%", "\\%")}%")
+	end
+
+	def search_posts_by_title(query) do
+		Repo.all from p in Post,
+			where: ilike(p.title, ^"%#{String.replace(query, "%", "\\%")}%")
+	end
+
+	def search_posts_by_content(query) do
+		Repo.all from p in Post,
+			where: ilike(p.content, ^"%#{String.replace(query, "%", "\\%")}%")
+	end
+
+	def search_posts_by_author(query) do
+		Repo.all from p in Post,
+			where: ilike(p.author, ^"%#{String.replace(query, "%", "\\%")}%")
+	end
 end

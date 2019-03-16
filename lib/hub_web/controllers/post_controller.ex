@@ -118,5 +118,30 @@ defmodule HubWeb.PostController do
     conn
     |> put_flash(:info, "Post deleted successfully.")
     |> redirect(to: Routes.post_path(conn, :index))
-  end
+	end
+
+	# def api_search(conn, %{"query" => query}) do
+	# 	posts = Content.search_posts(query)
+	# 	render(conn, "index.json", posts: posts)
+	# end
+
+	def api_search(conn, %{"query" => query, "type" => type}) do
+		case type do
+			"all" ->
+				posts = Content.search_posts(query)
+				render(conn, "index.json", posts: posts)
+			"author" ->
+				posts = Content.search_posts_by_author(query)
+				render(conn, "index.json", posts: posts)
+			"title" ->
+				posts = Content.search_posts_by_title(query)
+				render(conn, "index.json", posts: posts)
+			"content" ->
+				posts = Content.search_posts_by_content(query)
+				render(conn, "index.json", posts: posts)
+			_ ->
+				render(conn, HubWeb.ErrorView, "403.json", message: "Invalid type to search by.")
+		end
+	end
+
 end

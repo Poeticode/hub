@@ -21,14 +21,21 @@ defmodule HubWeb.Router do
 		post "/login", AdminController, :sign_in
 		get "/new_post", PostController, :new_unapproved
     post "/new_post", PostController, :create_unapproved
-    get "/submissions/:id", PostController, :general_show
+		get "/submissions/:id", PostController, :general_show
+	end
+
+	scope "/api", HubWeb do
+		pipe_through :api
+
+		get "/submissions", PostController, :api_search
 	end
 
   scope "/admin", HubWeb do
     pipe_through [:browser, :ensure_admin]
 
     get "/", PageController, :admin
-    resources "/posts", PostController
+		resources "/posts", PostController
+		resources "/members", MemberController
   end
 
   defp ensure_admin(conn, _opts) do

@@ -11,7 +11,8 @@ defmodule Hub.Content.Post do
     field :filename, :string
     field :path, :string
 		field :attachment, :any, virtual: true
-    field :approved, :boolean, default: false
+		field :approved, :boolean, default: false
+		belongs_to :member, Hub.Auth.Member
 
     timestamps()
   end
@@ -21,6 +22,7 @@ defmodule Hub.Content.Post do
     post
     |> cast(attrs, [:author, :title, :content, :attachment, :approved])
 		|> validate_required([:author, :title, :content])
+		|> foreign_key_constraint(:member)
 		|> put_attachment_file()
 	end
 

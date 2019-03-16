@@ -17,7 +17,11 @@ defmodule HubWeb.ErrorView do
 
   def render("401.json", %{message: message}) do
     %{errors: %{detail: message}}
-  end
+	end
+
+	def render("403.json", %{message: message}) do
+		%{errors: %{detail: message}}
+	end
 
   def render("400_post.json", %{changeset: changeset}) do
     %{errors: changeset.errors[:author]}
