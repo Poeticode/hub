@@ -1,0 +1,19 @@
+<%= for member <- @members do %>
+  <div class="member">
+    <div class="title">
+      <h3><%= member.name %></a></h3>
+      <div class="bio"><%= member.bio %></div>
+			<div class="social">
+				<h6>Instagram</h6> <span><%= member.instagram %></span>
+				<h6>Facebook</h6> <span><%= member.facebook %></span>
+				<h6>Twitter</h6> <span><%= member.twitter %></span>
+				<h6>Mastodon</h6> <span><%= member.mastodon %></span>
+				<h6>Website</h6> <span><%= member.website %></span>
+			</div>
+    </div>
+  </div>
+<% end %>
+
+<%= pagination_links @page %>
+
+<a href="/new_member"><button>New Member</button></a>

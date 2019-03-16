@@ -26,7 +26,7 @@
         <nav role="navigation">
           <ul>
             <li><a href="/">Home</a></li> |
-						<li><a href="/new_post">New Submission</a></li>
+						<li><a href="/members">Members</a></li>
           </ul>
         </nav>
       </section>

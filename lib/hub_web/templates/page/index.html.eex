@@ -20,3 +20,5 @@
 <% end %>
 
 <%= pagination_links @page %>
+
+<a href="/new_submission"><button>New Submission</button></a>

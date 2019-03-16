@@ -16,6 +16,21 @@ defmodule Hub.Email do
 		|> add_dynamic_field(:author, author)
 	end
 
+	def new_member_email(name, recipient) do
+		base_email()
+		|> to(recipient)
+		|> with_template(Application.get_env(:hub, :sendgrid_member_template_id))
+		|> add_dynamic_field(:name, name)
+		|> add_dynamic_field(:url, "https://chattanoogapoetscollective/login")
+	end
+
+	def member_edit_email(url, recipient) do
+		base_email()
+		|> to(recipient)
+		|> with_template(Application.get_env(:hub, :sendgrid_edit_member_template_id))
+		|> add_dynamic_field(:url, "https://chattanoogapoetscollective/member/#{url}")
+	end
+
 	defp base_email do
     new_email
     |> from("Chattanooga Poet's Collective <me@silentsilas.com>")

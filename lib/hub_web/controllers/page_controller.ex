@@ -8,6 +8,13 @@ defmodule HubWeb.PageController do
 			|> where(approved: true)
 			|> Hub.Repo.paginate(params)
     render(conn, "index.html", posts: page.entries, token: get_csrf_token(), page: page)
+	end
+
+	def members_index(conn, params) do
+		page = Hub.Auth.Member
+			|> where(approved: true)
+			|> Hub.Repo.paginate(params)
+    render(conn, "members.html", members: page.entries, token: get_csrf_token(), page: page)
   end
 
   def login(conn, _params) do

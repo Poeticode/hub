@@ -19,9 +19,15 @@ defmodule HubWeb.Router do
     get "/", PageController, :index
     get "/login", PageController, :login
 		post "/login", AdminController, :sign_in
-		get "/new_post", PostController, :new_unapproved
-    post "/new_post", PostController, :create_unapproved
+		get "/new_submission", PostController, :new_unapproved
+    post "/new_submission", PostController, :create_unapproved
 		get "/submissions/:id", PostController, :general_show
+		get "/members", PageController, :members_index
+		get "/member/:edit_url", MemberController, :general_edit
+		put "/member/:id", MemberController, :general_update
+
+		get "/new_member", MemberController, :new_unapproved
+		post "/new_member", MemberController, :create_unapproved
 	end
 
 	scope "/api", HubWeb do

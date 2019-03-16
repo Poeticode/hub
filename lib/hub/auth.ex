@@ -215,5 +215,10 @@ defmodule Hub.Auth do
   """
   def change_member(%Member{} = member) do
     Member.changeset(member, %{})
-  end
+	end
+
+	def get_member_by_url(url) do
+		Repo.one from m in Member,
+			where: m.edit_url == ^"#{String.replace(url, "%", "\\%")}"
+	end
 end

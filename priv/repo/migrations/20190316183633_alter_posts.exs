@@ -1,4 +1,4 @@
-defmodule Hub.Repo.Migrations.CreatePosts do
+defmodule Hub.Repo.Migrations.AlterPosts do
   use Ecto.Migration
 
 	def change do

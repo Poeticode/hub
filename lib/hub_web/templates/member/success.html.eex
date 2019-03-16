@@ -1,0 +1,20 @@
+<h1>Success!</h1>
+
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @member.name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @member.email %>
+  </li>
+
+  <li>
+    <strong>Bio:</strong>
+    <%= @member.bio %>
+  </li>
+</ul>
+
+<h4>Please give us some time to approve your submission! Check your email for a link to edit your member details.</h4>
