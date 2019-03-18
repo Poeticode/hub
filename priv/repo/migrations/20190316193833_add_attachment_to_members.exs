@@ -1,4 +1,4 @@
-defmodule Hub.Repo.Migrations.AlterMembers do
+defmodule Hub.Repo.Migrations.AddAttachmentToMembers do
   use Ecto.Migration
 
 	def change do
