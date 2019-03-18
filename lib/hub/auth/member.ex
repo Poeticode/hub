@@ -14,10 +14,11 @@ defmodule Hub.Auth.Member do
     field :mastodon, :string
     field :name, :string
     field :twitter, :string
-		field :website, :string
-		# field :filename, :string
-    # field :path, :string
-		# field :attachment, :any, virtual: true
+    field :website, :string
+    field :content_type, :string
+		field :filename, :string
+    field :path, :string
+		field :attachment, :any, virtual: true
 		has_many :posts, Hub.Content.Post, foreign_key: :member_id
 
     timestamps()
@@ -26,9 +27,10 @@ defmodule Hub.Auth.Member do
   @doc false
   def changeset(member, attrs) do
     member
-    |> cast(attrs, [:name, :email, :website, :approved, :instagram, :facebook, :twitter, :mastodon, :bio])
-		|> validate_required([:name, :email, :approved, :bio])
-		|> check_url_uuid()
+    |> cast(attrs, [:name, :email, :website, :approved, :instagram, :facebook, :twitter, :mastodon, :bio, :attachment])
+    |> validate_required([:name, :email, :approved, :bio])
+    |> put_attachment_file()
+    |> check_url_uuid()
 	end
 
 	defp check_url_uuid(changeset) do
@@ -46,8 +48,8 @@ defmodule Hub.Auth.Member do
       %Ecto.Changeset{changes: %{
         attachment: attachment
       }} ->
+        Logger.debug(inspect(attachment))
 				path = Ecto.UUID.generate() <> Path.extname(attachment.filename)
-				Logger.debug(inspect(attachment))
         changeset
         |> put_change(:path, path)
         |> put_change(:filename, attachment.filename)

@@ -1,4 +1,4 @@
-<%= form_for @changeset, @action, fn f -> %>
+<%= form_for @changeset, @action, [multipart: true], fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
@@ -16,6 +16,14 @@
 	<%= label f, :email %>
   <%= text_input f, :email %>
   <%= error_tag f, :email %>
+
+	<%= label f, :attachment %>
+	<%= if f.data.path do %>
+		<img src="/uploads/<%= f.data.path %>" class="thumbnail" />
+		<p><%= f.data.filename %></p>
+	<% end %>
+	<input id="member_attachment" name="member[attachment]" type="file" accept="image/x-png,image/gif,image/jpeg">
+	<%= error_tag f, :attachment %>
 
   <div>
     <%= submit "Save" %>

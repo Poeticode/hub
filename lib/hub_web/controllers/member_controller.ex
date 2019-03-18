@@ -1,7 +1,6 @@
 defmodule HubWeb.MemberController do
   use HubWeb, :controller
-
-
+  require Logger
   alias Hub.Auth
   alias Hub.Auth.Member
 
@@ -30,18 +29,18 @@ defmodule HubWeb.MemberController do
       case Auth.create_member(member_params) do
 				{:ok, member} ->
 					# copy over temporary upload to persistent storage
-					# if member_params["attachment"] do
-					# 	Logger.debug(inspect(member))
-					# 	File.cp!(member_params["attachment"].path, "uploads/#{member.path}")
-					# end
+					if member_params["attachment"] do
+						Logger.debug(inspect(member))
+						File.cp!(member_params["attachment"].path, "uploads/#{member.path}")
+					end
 
 					Task.async(fn ->
 						# TODO: Have there be a list of emails that we'd send to
 						Hub.Email.new_member_email(member.name, "me@silentsilas.com")
 							|> Hub.Mailer.deliver_now
 
-						Hub.Email.member_edit_email(member.edit_url, member.email)
-							|> Hub.Mailer.deliver_now
+						# Hub.Email.member_edit_email(member.edit_url, member.email)
+						# 	|> Hub.Mailer.deliver_now
 					end)
 
           conn
@@ -98,7 +97,12 @@ defmodule HubWeb.MemberController do
     conn
     |> put_flash(:info, "Member deleted successfully.")
     |> redirect(to: Routes.member_path(conn, :index))
-	end
+  end
+
+  def general_show(conn, %{"id" => id}) do
+    member = Auth.get_member!(id)
+    render(conn, "general_show.html", member: member)
+  end
 
 	def general_edit(conn, %{"edit_url" => edit_url}) do
 		member = Auth.get_member_by_url(edit_url)
@@ -116,6 +120,12 @@ defmodule HubWeb.MemberController do
 
     case Auth.update_member(member, member_params) do
       {:ok, member} ->
+
+        if member_params["attachment"] do
+          Logger.debug(inspect(member))
+          File.cp!(member_params["attachment"].path, "uploads/#{member.path}")
+        end
+
         conn
         |> put_flash(:info, "Member updated successfully.")
         |> redirect(to: Routes.member_path(conn, :general_edit, member))

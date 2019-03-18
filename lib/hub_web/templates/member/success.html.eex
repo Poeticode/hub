@@ -17,4 +17,7 @@
   </li>
 </ul>
 
-<h4>Please give us some time to approve your submission! Check your email for a link to edit your member details.</h4>
+<h4>Please give us some time to approve your submission!</h4>
+<h6>In the meantime, you can edit your details <a href="/members/edit/<%= @member.edit_url %>">here.</a></h6>
+<h6>You'll want to bookmark that page. If the above link doesn't work, try copy and pasting this into your address bar:</h6>
+<input type="text" value="https://chattanoogapoetscollective.com/members/edit/<%= @member.edit_url %>">

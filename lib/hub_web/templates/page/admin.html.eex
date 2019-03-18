@@ -1,8 +1,11 @@
 <section class="phx-hero">
   <h1>Welcome admin!</h1>
-  <p>This will have a list of posts awaiting approval</p>
+  <p>This will have a list of posts/members awaiting approval</p>
 </section>
 
 <div class="admin_actions">
-<a href="/admin/posts">Posts</a>
+  <ul>
+    <li><a href="/admin/posts">Posts</a></li>
+    <li><a href="/admin/members">Members</a></li>
+  </ul>
 </div>

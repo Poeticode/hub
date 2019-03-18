@@ -1,4 +1,4 @@
-<h1>New Submission</h1>
+<h1>New Member</h1>
 
 <%= render "form_unapproved.html", Map.put(assigns, :action, Routes.member_path(@conn, :create_unapproved)) %>
 

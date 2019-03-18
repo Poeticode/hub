@@ -1,18 +1,18 @@
-<%= for member <- @members do %>
-  <div class="member">
-    <div class="title">
-      <h3><%= member.name %></a></h3>
-      <div class="bio"><%= member.bio %></div>
-			<div class="social">
-				<h6>Instagram</h6> <span><%= member.instagram %></span>
-				<h6>Facebook</h6> <span><%= member.facebook %></span>
-				<h6>Twitter</h6> <span><%= member.twitter %></span>
-				<h6>Mastodon</h6> <span><%= member.mastodon %></span>
-				<h6>Website</h6> <span><%= member.website %></span>
-			</div>
-    </div>
+<div class="dt-ns dt--fixed-ns">
+  <%= for member <- @members do %>
+
+  <div class="dtc-ns tc pv4">
+    <article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+      <div class="tc">
+        <img src="/uploads/<%= member.path %>" class="br-100 h4 w4 dib ba b--black-05 pa2">
+        <h1 class="f3 mb2"><a href="/members/<%= member.id %>"><%= member.name %></a></h1>
+        <h2 class="f5 fw4 gray mt0"><%= member.email %></h2>
+      </div>
+    </article>
   </div>
-<% end %>
+
+  <% end %>
+</div>
 
 <%= pagination_links @page %>
 

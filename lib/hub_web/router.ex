@@ -22,9 +22,10 @@ defmodule HubWeb.Router do
 		get "/new_submission", PostController, :new_unapproved
     post "/new_submission", PostController, :create_unapproved
 		get "/submissions/:id", PostController, :general_show
-		get "/members", PageController, :members_index
-		get "/member/:edit_url", MemberController, :general_edit
-		put "/member/:id", MemberController, :general_update
+    get "/members", PageController, :members_index
+    get "/members/:id", MemberController, :general_show
+		get "/members/edit/:edit_url", MemberController, :general_edit
+		put "/members/edit/:id", MemberController, :general_update
 
 		get "/new_member", MemberController, :new_unapproved
 		post "/new_member", MemberController, :create_unapproved

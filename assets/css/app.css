@@ -11,3 +11,6 @@ nav ul li {
 textarea {
     height: auto;
 }
+
+@import "../node_modules/tachyons/css/tachyons.css";
+@import "./contact.css";

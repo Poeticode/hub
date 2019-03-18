@@ -1,0 +1,22 @@
+<h3><%= @member.name %></a></h3>
+<div class="social">
+  <%= if @member.instagram do %>
+    <h6>Instagram: <%= @member.instagram %></h6>
+  <% end %>
+  <%= if @member.facebook do %>
+    <h6>Facebook: <%= @member.facebook %></h6>
+  <% end %>
+  <%= if @member.twitter do %>
+    <h6>Twitter: <%= @member.twitter %></h6>
+  <% end %>
+  <%= if @member.mastodon do %>
+    <h6>Mastodon: <%= @member.mastodon %></h6>
+  <% end %>
+  <%= if @member.website do %>
+    <h6>Website: <%= @member.website %></h6>
+  <% end %>
+  <%= if @member.email do %>
+    <h6>Email: <%= @member.email %></h6>
+  <% end %>
+</div>
+<div class="bio"><h6>Bio: <%= @member.bio %></h6></div>
