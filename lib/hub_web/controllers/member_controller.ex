@@ -29,19 +29,21 @@ defmodule HubWeb.MemberController do
       case Auth.create_member(member_params) do
 				{:ok, member} ->
 					# copy over temporary upload to persistent storage
-					if member_params["attachment"] do
-						Logger.debug(inspect(member))
-						File.cp!(member_params["attachment"].path, "uploads/#{member.path}")
+					# if member_params["attachment"] do
+					# 	Logger.debug(inspect(member))
+					# 	File.cp!(member_params["attachment"].path, "uploads/#{member.path}")
+					# end
+
+					if Application.get_env(:hub, :send_emails) do
+						Task.async(fn ->
+							# TODO: Have there be a list of emails that we'd send to
+							Hub.Email.new_member_email(member.name, "me@silentsilas.com")
+								|> Hub.Mailer.deliver_now
+
+							# Hub.Email.member_edit_email(member.edit_url, member.email)
+							# 	|> Hub.Mailer.deliver_now
+						end)
 					end
-
-					Task.async(fn ->
-						# TODO: Have there be a list of emails that we'd send to
-						Hub.Email.new_member_email(member.name, "me@silentsilas.com")
-							|> Hub.Mailer.deliver_now
-
-						# Hub.Email.member_edit_email(member.edit_url, member.email)
-						# 	|> Hub.Mailer.deliver_now
-					end)
 
           conn
 						|> put_flash(:info, "Member created successfully.")

@@ -46,6 +46,8 @@ defmodule Hub.MixProject do
 			{:plug_cowboy, "~> 2.0"},
 			{:bamboo, "~> 1.2"},
 			{:poison, "~> 3.1"},
+			{:arc, "~> 0.11.0"},
+			{:arc_ecto, "~> 0.11.1"},
 			{:scrivener_ecto, "~> 2.0"},
 			{:scrivener_html, "~> 1.8"}
     ]

@@ -17,13 +17,9 @@
   <%= text_input f, :email %>
   <%= error_tag f, :email %>
 
-	<%= label f, :attachment %>
-	<%= if f.data.path do %>
-		<img src="/uploads/<%= f.data.path %>" class="thumbnail" />
-		<p><%= f.data.filename %></p>
-	<% end %>
-	<input id="member_attachment" name="member[attachment]" type="file" accept="image/x-png,image/gif,image/jpeg">
-	<%= error_tag f, :attachment %>
+	<%= label f, :avatar %>
+	<%= file_input f, :avatar, class: "input", accept: "image/*" %>
+	<%= error_tag f, :avatar %>
 
   <div>
     <%= submit "Save" %>
