@@ -1,5 +1,4 @@
-<h1>New Submission</h1>
-
-<%= render "form_unapproved.html", Map.put(assigns, :action, Routes.post_path(@conn, :create_unapproved)) %>
-
-<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
+<div class="measure center black-80">
+	<legend class="f4 fw6 ph0 mh0">New Submission</legend>
+	<%= render "form_unapproved.html", Map.put(assigns, :action, Routes.post_path(@conn, :create_unapproved)) %>
+</div>

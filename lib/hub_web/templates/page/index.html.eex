@@ -1,24 +1,31 @@
-<%= for post <- @posts do %>
-  <div class="post">
-    <div class="title">
-      <h3><a href="/submissions/<%= post.id %>"><%= post.title %></a></h3>
-      <h6>by <%= post.author %> (<%= post.updated_at %>)</h3>
-    </div>
-    <!--
-    <%= if post.path do %>
-    <div class="attachment">
-			<img src="/uploads/<%= post.path %>" />
-    </div>
-		<% end %>
-    -->
-    <!--
-    <div class="content" style="white-space: pre-wrap;">
-      <p><%= post.content |> String.slice(0, 200) |> String.trim_trailing %>...</p>
-    </div>
-    -->
+
+	<div class="pa3">
+
+		<ul class="list pl0 measure center">
+			<h1 class="f1 lh-title">Submissions</h1>
+			<%= for post <- @posts do %>
+
+				<li class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">
+					<span class="lh-copy">
+						<a class="f4 fw7 dib no-underline hover-moon-gray black" href="/submissions/<%= post.id %>">
+							<%= post.title %>
+						</a> by <%= post.author %>
+					</span>
+				</li>
+			<% end %>
+		</ul>
+		<div class="pl0 measure center tr pa2">
+			<%= pagination_links @page %>
+		</div>
+
+		<div class="pl0 measure center tc pt4">
+			<p>Feel free to enter your own submission here!</p>
+			<a href="/new_submission">
+				<button class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">New Submission</button>
+			</a>
+		</div>
+
   </div>
-<% end %>
 
-<%= pagination_links @page %>
 
-<a href="/new_submission"><button>New Submission</button></a>
+

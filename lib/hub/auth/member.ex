@@ -30,10 +30,9 @@ defmodule Hub.Auth.Member do
   def changeset(member, attrs) do
     member
     |> cast(attrs, [:name, :email, :website, :approved, :instagram, :facebook, :twitter, :mastodon, :bio, :attachment])
-		# |> put_attachment_file
+		|> check_url_uuid()
 		|> cast_attachments(attrs, [:avatar])
 		|> validate_required([:name, :email, :approved, :bio, :avatar])
-    |> check_url_uuid()
 	end
 
 	defp check_url_uuid(changeset) do

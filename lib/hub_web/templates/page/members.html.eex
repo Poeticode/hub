@@ -1,19 +1,27 @@
 <div class="dt-ns dt--fixed-ns">
   <%= for member <- @members do %>
 
-  <div class="dtc-ns tc pv4">
-    <article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
-      <div class="tc">
-        <%# <img src="/uploads/<%= member.path %>" class="br-100 h4 w4 dib ba b--black-05 pa2"> %>
-        <h1 class="f3 mb2"><a href="/members/<%= member.id %>"><%= member.name %></a></h1>
-        <h2 class="f5 fw4 gray mt0"><%= member.email %></h2>
-      </div>
-    </article>
-  </div>
+		<%= if member.avatar do %>
+
+			<article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+				<div class="tc">
+					<a href="/members/<%= member.id %>"><img src="<%= Hub.Avatar.url({member.avatar, member}) %>" class="br-100 h4 w4 dib ba b--black-05 pa2"></a>
+					<h1 class="f3 mb2"><%= member.name %></h1>
+					<h2 class="f5 fw4 gray mt0">Fellow Poet</h2>
+				</div>
+			</article>
+
+		<% end %>
 
   <% end %>
 </div>
 
-<%= pagination_links @page %>
+<div class="pl0 measure center tr pa2">
+	<%= pagination_links @page %>
+</div>
 
-<a href="/new_member"><button>New Member</button></a>
+<div class="pl0 measure center tc pt4">
+	<a href="/new_member">
+		<button class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">New Member</button>
+	</a>
+</div>

@@ -1,18 +1,13 @@
 <h1>Listing Members</h1>
+<h5><a href="/admin">Back</a><h4>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Website</th>
+			<th>Email</th>
       <th>Approved</th>
-      <th>Instagram</th>
-      <th>Facebook</th>
-      <th>Twitter</th>
-      <th>Mastodon</th>
-      <th>Bio</th>
       <th>Edit url</th>
-
       <th></th>
     </tr>
   </thead>
@@ -20,13 +15,8 @@
 <%= for member <- @members do %>
     <tr>
       <td><%= member.name %></td>
-      <td><%= member.website %></td>
+			<td><%= member.email %></td>
       <td><%= member.approved %></td>
-      <td><%= member.instagram %></td>
-      <td><%= member.facebook %></td>
-      <td><%= member.twitter %></td>
-      <td><%= member.mastodon %></td>
-      <td><%= member.bio %></td>
       <td><%= member.edit_url %></td>
 
       <td>

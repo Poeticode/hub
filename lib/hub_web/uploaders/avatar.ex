@@ -1,6 +1,7 @@
 defmodule Hub.Avatar do
 	use Arc.Definition
 	use Arc.Ecto.Definition
+	require Logger
 	def __storage, do: Arc.Storage.Local # Add this
 
   # Include ecto support (requires package arc_ecto installed):
@@ -23,18 +24,18 @@ defmodule Hub.Avatar do
 
   # Define a thumbnail transformation:
   def transform(:thumb, _) do
-    {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
+    {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format jpg", :jpg}
   end
 
   # Override the persisted filenames:
   # def filename(version, _) do
-  #   version
+	# 	version
   # end
 
   # Override the storage directory:
-  # def storage_dir(version, {file, scope}) do
-  #   "uploads/user/avatars/#{scope.id}"
-  # end
+  def storage_dir(version, {file, scope}) do
+    "uploads/user/avatars/#{scope.edit_url}"
+  end
 
   # Provide a default URL if there hasn't been a file uploaded
   # def default_url(version, scope) do

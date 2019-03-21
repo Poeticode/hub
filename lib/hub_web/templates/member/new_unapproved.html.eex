@@ -1,5 +1,6 @@
-<h1>New Member</h1>
+<div class="measure center black-80">
+	<legend class="f4 fw6 ph0 mh0">New Member</legend>
+	<%= render "form_unapproved.html", Map.put(assigns, :action, Routes.member_path(@conn, :create_unapproved)) %>
+</div>
 
-<%= render "form_unapproved.html", Map.put(assigns, :action, Routes.member_path(@conn, :create_unapproved)) %>
 
-<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
