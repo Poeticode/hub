@@ -12,10 +12,44 @@ textarea {
     height: auto;
 }
 
+@font-face {
+  font-family: 'Rubik';
+	src: url('/fonts/Rubik-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Rubik';
+	src: url('/fonts/Rubik-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('/fonts/Inconcsolata-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+body {
+	font-family: 'Inconsolata', monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Rubik', sans-serif;
+}
+
+
+.main-font {
+	font-family: 'Rubik';
+}
+
+.prose-font {
+	font-family: 'Inconsolata';
+}
+
 a {
 	text-decoration: none;
 }
 
 @import "../node_modules/tachyons/css/tachyons.css";
-/* @import "./contact.css"; */
-/* @import "./header_nav.css"; */

@@ -17,6 +17,7 @@ defmodule HubWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+		get "/contact", PageController, :contact
     get "/login", PageController, :login
 		post "/login", AdminController, :sign_in
 		get "/new_submission", PostController, :new_unapproved

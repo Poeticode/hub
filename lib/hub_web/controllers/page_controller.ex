@@ -17,6 +17,10 @@ defmodule HubWeb.PageController do
     render(conn, "members.html", members: page.entries, token: get_csrf_token(), page: page)
   end
 
+	def contact(conn, _params) do
+		render(conn, "contact.html", body_class: "contact")
+	end
+
   def login(conn, _params) do
     render(conn, "login.html",  token: get_csrf_token(), body_class: "login")
   end

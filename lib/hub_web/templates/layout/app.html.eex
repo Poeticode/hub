@@ -29,7 +29,6 @@
 			<div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
 				<a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" href="/" title="Home">Home</a>
 				<a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" href="/members" title="Members">Members</a>
-				<a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" href="/about" title="About">About</a>
 				<a class="link dim dark-gray f6 f5-l dib" href="/contact" title="Contact">Contact</a>
 			</div>
 		</nav>
