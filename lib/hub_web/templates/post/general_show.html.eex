@@ -4,13 +4,15 @@
     <h1 class="f3 f2-m f-subheadline-l measure lh-title fw1 mt0 mb3"><%= @post.title %></h1>
     <span class="f5 f4-l db fw1 mb4"> by <%= @post.author %></span>
 		<%= if @post.path do %>
-    <img class="w-100 dib measure f3" src="/uploads/<%= @post.path %>" alt="A photo of sutro baths by Adam Morse"/>
+			<img class="w-100 dib measure f3" src="/uploads/<%= @post.path %>" />
 		<% end %>
   </header>
   <div class="ph3 ph4-m ph5-l" style="white-space: pre-wrap;">
     <p class="f4 mb4 center measure lh-copy"><%= @post.content %></p>
   </div>
 </article>
+<div class="mw8 center">
+	<div id="commento"></div>
+</div>
 
-<div id="commento"></div>
 <script src="https://commento.chattanoogapoetscollective.com/js/commento.js"></script>
