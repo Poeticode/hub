@@ -28,11 +28,6 @@ defmodule HubWeb.MemberController do
 			# TODO: we'll need to validate that they're actually uploading images
       case Auth.create_member(member_params) do
 				{:ok, member} ->
-					# copy over temporary upload to persistent storage
-					# if member_params["attachment"] do
-					# 	Logger.debug(inspect(member))
-					# 	File.cp!(member_params["attachment"].path, "uploads/#{member.path}")
-					# end
 
 					if Application.get_env(:hub, :send_emails) do
 						Task.async(fn ->
@@ -40,8 +35,6 @@ defmodule HubWeb.MemberController do
 							Hub.Email.new_member_email(member.name, "me@silentsilas.com")
 								|> Hub.Mailer.deliver_now
 
-							# Hub.Email.member_edit_email(member.edit_url, member.email)
-							# 	|> Hub.Mailer.deliver_now
 						end)
 					end
 
@@ -103,6 +96,8 @@ defmodule HubWeb.MemberController do
 
   def general_show(conn, %{"id" => id}) do
     member = Auth.get_member!(id)
+		|> Hub.Repo.preload(:posts)
+
     render(conn, "general_show.html", member: member)
   end
 

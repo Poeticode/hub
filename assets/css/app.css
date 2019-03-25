@@ -35,6 +35,18 @@ body {
 	font-family: 'Inconsolata', monospace;
 }
 
+@media screen and (min-width: 30em) {
+	.main-nav {
+		height: 20vh;
+	}
+	.container {
+		min-height: 60vh;
+	}
+	.main-footer {
+		height: 10vh;
+	}
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Rubik', sans-serif;
 }

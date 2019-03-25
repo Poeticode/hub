@@ -22,7 +22,7 @@
   </head>
   <body>
 
-		<nav class="db dt-l w-100 border-box pa3 ph5-l">
+		<nav class="db dt-l w-100 border-box pa3 ph5-l main-nav">
 			<a class="db dtc-l v-mid mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l" href="/" title="Home">
 				<img src="/uploads/logo_alt.png" class="dib h3" alt="Chattanooga Poets Collective">
 			</a>
@@ -38,6 +38,14 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
     </main>
+
+		<footer class="pv4 ph3 ph5-m ph6-l mid-gray main-footer">
+			<small class="f6 db tc">© 2019 <b class="ttu">Chattanooga Poets Collective</b>, All Rights Reserved</small>
+			<div class="tc mt3">
+				<span class="f6 dib ph2 link mid-gray dim">Developed by <a href="https://silentsilas.com" title="Silent Silas" class="f6 dib ph2 link mid-gray dim">Silent Silas</a></span>
+			</div>
+		</footer>
+
 		<noscript><p><img src="//analytics.silentsilas.com/matomo.php?idsite=3&amp;rec=1" style="border:0;" alt="" /></p></noscript>
     <script type="text/javascript" src='<%= Routes.static_path(@conn, "/js/app.js") %>'></script>
   </body>

@@ -1,3 +1,4 @@
-<h1>Edit Member</h1>
-
-<%= render "general_form.html", Map.put(assigns, :action, Routes.member_path(@conn, :general_edit, @member)) %>
+<div class="measure center black-80">
+	<h2 class="f4 fw6 ph0 mh0">Edit Member</h2>
+	<%= render "general_form.html", Map.put(assigns, :action, Routes.member_path(@conn, :general_edit, @member)) %>
+</div>
