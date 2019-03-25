@@ -42,7 +42,7 @@
 		<footer class="pv4 ph3 ph5-m ph6-l mid-gray main-footer">
 			<small class="f6 db tc">© 2019 <b class="ttu">Chattanooga Poets Collective</b>, All Rights Reserved</small>
 			<div class="tc mt3">
-				<span class="f6 dib ph2 link mid-gray dim">Developed by <a href="https://silentsilas.com" title="Silent Silas" class="f6 dib ph2 link mid-gray dim">Silent Silas</a></span>
+				<span class="f6 dib ph2 link mid-gray">Developed by <a href="https://silentsilas.com" title="Silent Silas" class="f6 dib link mid-gray dim">Silent Silas</a></span>
 			</div>
 		</footer>
 

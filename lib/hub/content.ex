@@ -85,6 +85,13 @@ defmodule Hub.Content do
     |> Repo.update()
   end
 
+	def update_post_assoc(%Post{} = post, member) do
+    post
+    |> Post.generic_changeset(%{})
+    |> Ecto.Changeset.put_change(:member_id, member.id)
+    |> Repo.update()
+  end
+
   @doc """
   Deletes a Post.
 

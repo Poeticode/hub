@@ -1,11 +1,8 @@
-<section class="phx-hero">
-  <h1>Welcome admin!</h1>
+<div class="pl0 measure center tc pt4">
+	<h1 class="f1 lh-title">Welcome admin!</h1>
   <p>This will have a list of posts/members awaiting approval</p>
-</section>
-
-<div class="admin_actions">
-  <ul>
-    <li><a href="/admin/posts">Posts</a></li>
-    <li><a href="/admin/members">Members</a></li>
-  </ul>
+	<div class="admin_actions">
+			<a href="/admin/posts">Posts</a>,
+			<a href="/admin/members">Members</a>
+	</div>
 </div>

@@ -5,21 +5,36 @@
     </div>
   <% end %>
 
-  <%= label f, :author %>
-  <%= text_input f, :author %>
-  <%= error_tag f, :author %>
+	<div class="mt3">
+		<label class="db fw6 lh-copy f6" for="post_author">Author</label>
+		<input class="pa2 input-reset ba bg-transparent w-100" id="post_author" name="post[author]" type="text" value="<%= f.data.author %>">
+		<%= error_tag f, :author %>
+	</div>
 
-  <%= label f, :title %>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
+	<div class="mt3">
+		<label class="db fw6 lh-copy f6" for="post_title">Title</label>
+		<input class="pa2 input-reset ba bg-transparent w-100" id="post_title" name="post[title]" type="text" value="<%= f.data.title %>">
+		<%= error_tag f, :title %>
+	</div>
 
-  <%= label f, :content %>
-  <%= textarea f, :content, [rows: "8", cols: "50"] %>
-  <%= error_tag f, :content %>
+	<div class="mt3">
+		<label class="db fw6 lh-copy f6" for="post_content">Content</label>
+		<textarea class="pa2 input-reset ba bg-transparent w-100" cols="50" id="post_content" name="post[content]" rows="8"><%= f.data.content %></textarea>
+		<%= error_tag f, :content %>
+	</div>
 
   <%= label f, :approved %>
   <%= checkbox f, :approved %>
   <%= error_tag f, :approved %>
+
+	<%= if Ecto.assoc_loaded?(f.data.member) do %>
+		<div class="mt3">
+			<label class="db fw6 lh-copy f6" for="post_member_id">Member ID</label>
+			<input class="pa2 input-reset ba bg-transparent w-100" id="post_member_id" name="post[member_id]" type="number" value="<%= f.data.member_id %>">
+			<%= error_tag f, :member_id %>
+		</div>
+
+	<% end %>
 
 	<%= label f, :attachment %>
 	<%= if f.data.path do %>
@@ -29,7 +44,8 @@
 	<input id="post_attachment" name="post[attachment]" type="file" accept="image/x-png,image/gif,image/jpeg">
 	<%= error_tag f, :attachment %>
 
-  <div>
-    <%= submit "Save" %>
-  </div>
+	<div class="pl0 measure center tc pt4">
+		<button class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit">Save</button>
+	</div>
+
 <% end %>

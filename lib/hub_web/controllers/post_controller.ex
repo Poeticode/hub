@@ -93,12 +93,28 @@ defmodule HubWeb.PostController do
 
   def edit(conn, %{"id" => id}) do
     post = Content.get_post!(id)
+		|> Hub.Repo.preload(:member)
+
     changeset = Content.change_post(post)
     render(conn, "edit.html", post: post, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
     post = Content.get_post!(id)
+
+		Logger.debug(inspect(post_params))
+
+		if post_params["member_id"] do
+			member = Hub.Auth.get_member!(post_params["member_id"])
+			# time to associate this post with this member id
+			case Content.update_post_assoc(post, member) do
+				{:ok, post} ->
+					Logger.debug("Post associated successfully")
+				{:error, %Ecto.Changeset{} = changeset} ->
+					Logger.debug("Could not associate post")
+					Logger.debug(inspect(changeset))
+			end
+		end
 
     case Content.update_post(post, post_params) do
       {:ok, post} ->

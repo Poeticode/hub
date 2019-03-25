@@ -1,32 +1,34 @@
-<h1>Listing Posts</h1>
-<h5><a href="/admin">Back</a><h4>
+<div class="pl0 mw8 center tc pt4">
+	<h1>Listing Posts</h1>
+	<h5><a href="/admin">Back</a><h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Author</th>
-      <th>Title</th>
-      <th>Approved</th>
-			<th>Attachment</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for post <- @posts do %>
-    <tr>
-      <td><%= post.author %></td>
-      <td><%= post.title %></td>
-      <Td><%= post.approved %></td>
-			<Td><%= post.filename %></td>
+	<table>
+		<thead>
+			<tr>
+				<th>Author</th>
+				<th>Title</th>
+				<th>Approved</th>
+				<th>Attachment</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+	<%= for post <- @posts do %>
+			<tr>
+				<td><%= post.author %></td>
+				<td><%= post.title %></td>
+				<Td><%= post.approved %></td>
+				<Td><%= post.filename %></td>
 
-      <td>
-        <%= link "Show", to: Routes.post_path(@conn, :show, post) %>
-        <%= link "Edit", to: Routes.post_path(@conn, :edit, post) %>
-        <%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+				<td>
+					<%= link "Show", to: Routes.post_path(@conn, :show, post) %>
+					<%= link "Edit", to: Routes.post_path(@conn, :edit, post) %>
+					<%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %>
+				</td>
+			</tr>
+	<% end %>
+		</tbody>
+	</table>
 
-<span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>
+	<span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>
+</div>

@@ -48,4 +48,9 @@ defmodule Hub.Content.Post do
     end
   end
 
+	def generic_changeset(post, attrs) do
+		post
+    |> cast(attrs, [:member_id])
+	end
+
 end

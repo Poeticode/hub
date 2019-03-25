@@ -1,35 +1,37 @@
-<h1>Show Post</h1>
+<div class="measure center black-80">
+	<h2 class="f4 fw6 ph0 mh0">Show Post</h2>
 
-<ul>
+	<ul>
 
-  <li>
-    <strong>Author:</strong>
-    <%= @post.author %>
-  </li>
+		<li>
+			<strong>Author:</strong>
+			<%= @post.author %>
+		</li>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </li>
+		<li>
+			<strong>Title:</strong>
+			<%= @post.title %>
+		</li>
 
-  <li>
-    <strong>Content:</strong>
-    <%= @post.content %>
-  </li>
+		<li>
+			<strong>Content:</strong>
+			<%= @post.content %>
+		</li>
 
-  <li>
-  <strong>Approved:</strong>
-  <%= @post.approved %>
-  </li>
+		<li>
+		<strong>Approved:</strong>
+		<%= @post.approved %>
+		</li>
 
-	<li>
-	<strong>Attachment:</strong>
-	<%= if @post.path do %>
-		<img src="/uploads/<%= @post.path %>" />
-	<% end %>
-	</li>
+		<li>
+		<strong>Attachment:</strong>
+		<%= if @post.path do %>
+			<img src="/uploads/<%= @post.path %>" />
+		<% end %>
+		</li>
 
-</ul>
+	</ul>
 
-<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span>
-<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
+	<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span>
+	<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
+</div>

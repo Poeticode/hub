@@ -14,12 +14,13 @@
 	<div class="mt3">
 		<label class="db fw6 lh-copy f6" for="post_title">Title</label>
 		<input class="pa2 input-reset ba bg-transparent w-100" id="post_title" name="post[title]" type="text">
+		<%= error_tag f, :title %>
 	</div>
 
 	<div class="mt3">
 		<label class="db fw6 lh-copy f6" for="post_content">Content</label>
 		<textarea class="pa2 input-reset ba bg-transparent w-100" cols="50" id="post_content" name="post[content]" rows="8"></textarea>
-		<%= error_tag f, :bio %>
+		<%= error_tag f, :content %>
 	</div>
 
 	<div class="mt3">
