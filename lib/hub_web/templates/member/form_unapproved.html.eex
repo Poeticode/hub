@@ -8,7 +8,7 @@
 
 		<div class="mt3">
 			<label class="db fw6 lh-copy f6" for="member_name">Name</label>
-			<input class="pa2 input-reset ba bg-transparent w-100" id="member_name" name="member[name]" type="text">
+			<input class="pa2 input-reset ba bg-transparent w-100" id="member_name" name="member[name]" type="text" required>
 			<%= error_tag f, :name %>
 		</div>
 
@@ -21,13 +21,13 @@
 
 		<div class="mt3">
 			<label class="db fw6 lh-copy f6" for="member_email">Email</label>
-			<input class="pa2 input-reset ba bg-transparent w-100" id="member_email" name="member[email]" type="text">
+			<input class="pa2 input-reset ba bg-transparent w-100" id="member_email" name="member[email]" type="text" required>
 			<%= error_tag f, :email %>
 		</div>
 
 		<div class="mt3">
 			<label class="db fw6 lh-copy f6" for="member_avatar">Avatar</label>
-			<input class="pa3 input-reset bg-transparent w-100" accept="image/*" class="input" id="member_avatar" name="member[avatar]" type="file">
+			<input class="pa3 input-reset bg-transparent w-100" accept="image/*" class="input" id="member_avatar" name="member[avatar]" type="file" required>
 			<%= error_tag f, :avatar %>
 		</div>
 
