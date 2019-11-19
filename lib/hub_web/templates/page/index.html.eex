@@ -18,12 +18,20 @@
 			<%= pagination_links @page %>
 		</div>
 
+		<%= if Plug.Conn.get_session(@conn, :current_member_id) do %>
+
 		<div class="pl0 measure center tc pt4">
-			<p>Feel free to enter your own submission here!</p>
-			<a href="/new_submission">
+			<p>Feel free to submit your own work!</p>
+			<a href="/member/new_submission">
 				<button class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">New Submission</button>
 			</a>
 		</div>
+
+		<% else %>
+			<div class="pl0 measure center tc pt4">
+				<p><a href="/signup">Join us</a> to submit your own work!</p>
+			</div>
+		<% end %>
 
   </div>
 

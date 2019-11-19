@@ -12,7 +12,7 @@
 
 	<div class="pl0 measure center tc pt4">
 		<button class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit">Login</button>
-		<span>or <a href="/signup">Sign Up</a></span>
+		<span>or <a href="/signup">Join Us</a></span>
 	</div>
 
 
