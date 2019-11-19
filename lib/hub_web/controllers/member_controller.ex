@@ -124,7 +124,7 @@ defmodule HubWeb.MemberController do
     end
 	end
 
-  def general_update(conn, %{"member" => member_params} = params) do
+  def general_update(conn, %{"id" => _id,"member" => member_params} = params) do
     current_member_id = get_session(conn, :current_member_id)
 		member = Auth.get_member!(current_member_id)
 		page = get_own_posts(member, params)
