@@ -1,27 +1,5 @@
 <div class="pl0 measure center tc pt4">
 	<h1 class="f1 lh-title">Success!</h1>
-
-	<ul>
-		<li>
-			<strong>Name:</strong>
-			<%= @member.name %>
-		</li>
-
-		<li>
-			<strong>Email:</strong>
-			<%= @member.email %>
-		</li>
-
-		<li>
-			<strong>Bio:</strong>
-			<%= @member.bio %>
-		</li>
-	</ul>
-
 	<p>Please give us some time to approve your submission!</p>
-	<p>In the meantime, you can edit your details <a href="/members/edit/<%= @member.edit_url %>">here.</a></p>
-	<p>You'll want to bookmark that page. If the above link doesn't work, try copy and pasting this into your address bar:</p>
-	<input type="text" value="https://chattanoogapoetscollective.com/members/edit/<%= @member.edit_url %>">
-
 </div>
 

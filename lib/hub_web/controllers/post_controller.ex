@@ -3,6 +3,7 @@ defmodule HubWeb.PostController do
   require Logger
   alias Hub.Content
   alias Hub.Content.Post
+
   action_fallback HubWeb.FallbackController
 
   def index(conn, _params) do
@@ -13,22 +14,29 @@ defmodule HubWeb.PostController do
   def new(conn, _params) do
     changeset = Content.change_post(%Post{})
     render(conn, "new.html", changeset: changeset)
-	end
+  end
 
-	def new_unapproved(conn, _params) do
+  def new_attributed(conn, _params) do
 		changeset = Content.change_post(%Post{})
-		render(conn, "new_unapproved.html", changeset: changeset)
+		render(conn, "new_attributed.html", changeset: changeset)
 	end
 
-  def create_unapproved(conn, %{"post" => post_params}) do
-    Logger.debug(inspect(post_params))
+  def create_attributed(conn, %{"post" => post_params}) do
+    current_member_id = get_session(conn, :current_member_id)
+    member = Hub.Auth.get_member!(current_member_id)
+
     if post_params["approved"] == true do
       conn
         |> put_status(:unauthorized)
         |> render(HubWeb.ErrorView, "401.json", message: "Cannot manually approve post.")
-		else
+    else
+      post_params =
+        Map.put(post_params, "member_id", member.id)
+
+      post_params =
+        Map.put(post_params, "author", member.name)
 			# TODO: we'll need to validate that they're actually uploading images
-      case Content.create_post(post_params) do
+      case Content.create_attributed_post(post_params) do
 				{:ok, post} ->
 					# copy over temporary upload to persistent storage
 					if post_params["attachment"] do
@@ -43,11 +51,10 @@ defmodule HubWeb.PostController do
 					end)
 
           conn
-						|> put_flash(:info, "Post created successfully.")
 						|> render("success.html", post: post)
 
         {:error, %Ecto.Changeset{} = changeset} ->
-          render(conn, "new_unapproved.html", changeset: changeset)
+          render(conn, "new_attributed.html", changeset: changeset)
       end
     end
 	end
@@ -76,7 +83,9 @@ defmodule HubWeb.PostController do
   end
 
   def general_show(conn, %{"id" => id}) do
-    post =  Content.get_post(id)
+		post =  Content.get_post(id)
+		|> Hub.Repo.preload(:member)
+
     if post != nil do
       if post.approved == true do
         conn
@@ -102,8 +111,6 @@ defmodule HubWeb.PostController do
   def update(conn, %{"id" => id, "post" => post_params}) do
     post = Content.get_post!(id)
 
-		Logger.debug(inspect(post_params))
-
 		if post_params["member_id"] do
 			member = Hub.Auth.get_member!(post_params["member_id"])
 			# time to associate this post with this member id
@@ -112,7 +119,6 @@ defmodule HubWeb.PostController do
 					Logger.debug("Post associated successfully")
 				{:error, %Ecto.Changeset{} = changeset} ->
 					Logger.debug("Could not associate post")
-					Logger.debug(inspect(changeset))
 			end
 		end
 

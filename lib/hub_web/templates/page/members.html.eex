@@ -5,11 +5,21 @@
 
 			<article class="mw5 bg-white br3 pa3 pa4-ns mv3 ba b--black-10 dib ml4">
 				<div class="tc">
-					<a href="/members/<%= member.id %>"><img src="<%= Hub.Avatar.url({member.avatar, member}) %>" class="br-100 h4 w4 dib ba b--black-05 pa2"></a>
+					<a href="/members/<%= member.id %>"><div style="background:url('<%= Hub.Avatar.url({member.avatar, member}) %>') center no-repeat; background-size: cover;" class="circle_cropped br-100 h4 w4 dib ba b--black-05 pa2"></div></a>
 					<h1 class="f3 mb2"><%= member.name %></h1>
 					<h2 class="f5 fw4 gray mt0">Fellow Poet</h2>
 				</div>
 			</article>
+
+		<% else %>
+
+		<article class="mw5 bg-white br3 pa3 pa4-ns mv3 ba b--black-10 dib ml4">
+			<div class="tc">
+				<a href="/members/<%= member.id %>"><div style="background:url('/images/edgar.jpg') center no-repeat; background-size: cover;" class="circle_cropped br-100 h4 w4 dib ba b--black-05 pa2"></div></a>
+				<h1 class="f3 mb2"><%= member.name %></h1>
+				<h2 class="f5 fw4 gray mt0">Fellow Poet</h2>
+			</div>
+		</article>
 
 		<% end %>
 
@@ -21,7 +31,7 @@
 </div>
 
 <div class="pl0 measure center tc pt4 mb4">
-	<a href="/new_member">
-		<button class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">New Member</button>
+	<a href="/signup">
+		<button class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">Join Us</button>
 	</a>
 </div>

@@ -1,0 +1,8 @@
+<div class="pl0 measure center tc pt4">
+	<h1 class="f1 lh-title">Sup, nerd.</h1>
+  <p>You can approve / delete things here. Be careful, please.</p>
+	<div class="admin_actions">
+			<a href="/backstage/posts">Posts</a>,
+			<a href="/backstage/members">Members</a>
+	</div>
+</div>

@@ -11,7 +11,7 @@ defmodule Hub.Email do
 		base_email()
 		|> to(recipient)
 		|> with_template(Application.get_env(:hub, :sendgrid_template_id))
-		|> add_dynamic_field(:url, "https://chattanoogapoetscollective/login")
+		|> add_dynamic_field(:url, "https://chattanoogapoetscollective.com/login")
 		|> add_dynamic_field(:title, title)
 		|> add_dynamic_field(:author, author)
 	end
@@ -21,14 +21,14 @@ defmodule Hub.Email do
 		|> to(recipient)
 		|> with_template(Application.get_env(:hub, :sendgrid_member_template_id))
 		|> add_dynamic_field(:name, name)
-		|> add_dynamic_field(:url, "https://chattanoogapoetscollective/login")
+		|> add_dynamic_field(:url, "https://chattanoogapoetscollective.com/login")
 	end
 
 	def member_edit_email(url, recipient) do
 		base_email()
 		|> to(recipient)
 		|> with_template(Application.get_env(:hub, :sendgrid_edit_member_template_id))
-		|> add_dynamic_field(:url, "https://chattanoogapoetscollective/member/#{url}")
+		|> add_dynamic_field(:url, "https://chattanoogapoetscollective.com/member/#{url}")
 	end
 
 	defp base_email do

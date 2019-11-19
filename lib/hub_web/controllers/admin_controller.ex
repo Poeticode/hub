@@ -46,7 +46,7 @@ defmodule HubWeb.AdminController do
       {:ok, admin} ->
         conn
         |> put_session(:current_admin_id, admin.id)
-        |> redirect(to: "/admin")
+        |> redirect(to: "/backstage")
 
       {:error, message} ->
         conn

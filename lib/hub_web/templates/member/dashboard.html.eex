@@ -1,0 +1,42 @@
+
+	<div class="pa3">
+
+		<ul class="list pl0 measure center">
+			<h1 class="f1 lh-title">Dashboard</h1>
+
+			<h4 class="f4 fw6 ph0 mh0">Edit Profile</h4>
+			<%= if @member.approved do %>
+				You are an approved member. Welcome to our clique.
+			<% else %>
+				Your membership is <b>awaiting approval</b>. Feel free to <a href="/contact">complain</a>.
+			<% end %>
+			<%= render "general_form.html", Map.put(assigns, :action, Routes.member_path(@conn, :general_update, @member)) %>
+
+			<%= if Ecto.assoc_loaded?(@posts) do %>
+				<h4 class="f4 fw6 ph0 mh0">Submissions:</h4>
+				<%= if length(@posts) > 0 do %>
+						<%= for post <- @posts do %>
+								<%= if post.approved do %>
+										<div><a href="/submissions/<%= post.id %>"><%= post.title %></a></div>
+								<% else %>
+										<div><%= post.title %> - <i>Awaiting Approval</i></div>
+								<% end %>
+						<% end %>
+				<% else %>
+						<div>None yet!</div>
+				<% end %>
+
+		<% end %>
+		</ul>
+		<div class="pl0 measure center tr pa2">
+			<%= pagination_links @page %>
+		</div>
+
+		<div class="pl0 measure center tc pt4">
+			<p>Feel free to enter your own submission here!</p>
+			<a href="/member/new_submission">
+				<button class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">New Submission</button>
+			</a>
+		</div>
+
+  </div>

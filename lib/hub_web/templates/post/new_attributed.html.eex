@@ -1,0 +1,4 @@
+<div class="measure center black-80">
+	<h2 class="f4 fw6 ph0 mh0">New Submission</h2>
+	<%= render "form_attributed.html", Map.put(assigns, :action, Routes.post_path(@conn, :create_attributed)) %>
+</div>

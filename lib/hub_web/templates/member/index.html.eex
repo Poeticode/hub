@@ -1,6 +1,6 @@
 <div class="pl0 mw8 center tc pt4">
 	<h1>Listing Members</h1>
-	<h5><a href="/admin">Back</a><h4>
+	<h5><a href="/backstage">Back</a><h4>
 
 	<table>
 		<thead>
@@ -16,11 +16,10 @@
 		<tbody>
 	<%= for member <- @members do %>
 			<tr>
+				<td><%= member.email %></td>
 				<td><%= member.name %></td>
 				<td><%= member.id %></td>
-				<td><%= member.email %></td>
 				<td><%= member.approved %></td>
-				<td><%= member.edit_url %></td>
 
 				<td>
 					<%= link "Show", to: Routes.member_path(@conn, :show, member) %>
@@ -31,6 +30,4 @@
 	<% end %>
 		</tbody>
 	</table>
-
-	<span><%= link "New Member", to: Routes.member_path(@conn, :new) %></span>
 </div>

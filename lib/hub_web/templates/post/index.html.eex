@@ -1,6 +1,6 @@
 <div class="pl0 mw8 center tc pt4">
 	<h1>Listing Posts</h1>
-	<h5><a href="/admin">Back</a><h4>
+	<h5><a href="/backstage">Back</a><h4>
 
 	<table>
 		<thead>
@@ -29,6 +29,4 @@
 	<% end %>
 		</tbody>
 	</table>
-
-	<span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>
 </div>

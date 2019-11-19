@@ -5,6 +5,10 @@
     </div>
   <% end %>
 
+  <%= label f, :email %>
+  <%= email_input f, :email %>
+  <%= error_tag f, :email %>
+
   <%= label f, :name %>
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
@@ -36,10 +40,6 @@
   <%= label f, :bio %>
   <%= textarea f, :bio %>
   <%= error_tag f, :bio %>
-
-  <%= label f, :edit_url %>
-  <%= text_input f, :edit_url %>
-  <%= error_tag f, :edit_url %>
 
   <div>
     <%= submit "Save" %>

@@ -22,16 +22,29 @@
   </head>
   <body>
 
+		<%= if Plug.Conn.get_session(@conn, :current_admin_id) do %>
+		<nav class="db dt-l w-100 border-box pa3 ph5-l main-nav">
+			<div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+				<a href="/logout">Logout</a>
+			</div>
+		</nav>
+		<% else %>
 		<nav class="db dt-l w-100 border-box pa3 ph5-l main-nav">
 			<a class="db dtc-l v-mid mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l" href="/" title="Home">
 				<img src="/images/logo_alt.png" class="dib h3" alt="Chattanooga Poets Collective">
 			</a>
 			<div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
-				<a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" href="/" title="Home">Home</a>
 				<a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" href="/members" title="Members">Members</a>
-				<a class="link dim dark-gray f6 f5-l dib" href="/contact" title="Contact">Contact</a>
+				<a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" href="/contact" title="Contact">Contact</a>
+				<%= if Plug.Conn.get_session(@conn, :current_member_id) do %>
+				<a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" href="/member" title="Login">Dashboard</a>
+				<a class="link dim dark-gray f6 f5-l dib" href="/logout" title="Login">Logout</a>
+				<% else %>
+				<a class="link dim dark-gray f6 f5-l dib" href="/login" title="Login">Login</a>
+				<% end %>
 			</div>
 		</nav>
+		<% end %>
 
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

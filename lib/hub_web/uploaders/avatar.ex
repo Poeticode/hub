@@ -34,7 +34,7 @@ defmodule Hub.Avatar do
 
   # Override the storage directory:
   def storage_dir(version, {file, scope}) do
-    "uploads/user/avatars/#{scope.edit_url}"
+    "uploads/user/avatars/#{scope.email}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded

@@ -1,21 +1,4 @@
 <div class="pl0 measure center tc pt4">
 	<h1 class="f1 lh-title">Success!</h1>
-<ul>
-  <li>
-    <strong>Author:</strong>
-    <%= @post.author %>
-  </li>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </li>
-
-  <li>
-    <strong>Content:</strong>
-    <%= @post.content %>
-  </li>
-</ul>
-
-<p>Please give us some time to approve your submission</p>
+	<p>Please give us some time to approve your submission</p>
 </div>

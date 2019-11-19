@@ -1,5 +1,6 @@
 defmodule HubWeb.MemberView do
-	use HubWeb, :view
+  use HubWeb, :view
+  import Scrivener.HTML
 
 	def render("success.json", _) do
     %{

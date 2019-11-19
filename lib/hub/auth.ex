@@ -182,11 +182,17 @@ defmodule Hub.Auth do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_member(%Member{} = member, attrs) do
+  def update_member_pswd(%Member{} = member, attrs) do
     member
     |> Member.changeset(attrs)
     |> Repo.update()
-  end
+	end
+
+	def update_member_pswdless(%Member{} = member, attrs) do
+		member
+		|> Member.pswdless_changeset(attrs)
+		|> Repo.update()
+	end
 
   @doc """
   Deletes a Member.
@@ -214,11 +220,17 @@ defmodule Hub.Auth do
 
   """
   def change_member(%Member{} = member) do
-    Member.changeset(member, %{})
+    Member.pswd_changeset(member, %{})
 	end
 
-	def get_member_by_url(url) do
-		Repo.one from m in Member,
-			where: m.edit_url == ^"#{String.replace(url, "%", "\\%")}"
-	end
+  def authenticate_member(email, password) do
+    query =
+      from(m in Member,
+        where: ilike(m.email, ^email),
+        preload: [:posts]
+      )
+
+    query |> Repo.one() |> verify_password(password)
+  end
+
 end

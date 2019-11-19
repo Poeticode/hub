@@ -1,9 +1,10 @@
 <div class="measure center black-80">
-<form action="<%= Routes.member_path @conn, :sign_in %>" method="post" class="form-container form-login">
+<form action="<%= Routes.admin_path @conn, :sign_in %>" method="post" class="form-container form-login">
   <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
 
+	What are you doing here? Get off my lawn.
 	<div class="mt3">
-		<input class="pa2 input-reset ba bg-transparent w-100" id="email" name="email" type="text" required placeholder="email" aria-label="enter your email">
+		<input class="pa2 input-reset ba bg-transparent w-100" id="username" name="username" type="text" required placeholder="username" aria-label="enter your username">
 	</div>
 	<div class="mt3">
 		<input class="pa2 input-reset ba bg-transparent w-100" id="password" name="password" type="password" required placeholder="password" aria-label="enter your password">
@@ -11,10 +12,7 @@
 
 	<div class="pl0 measure center tc pt4">
 		<button class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit">Login</button>
-		<span>or <a href="/signup">Sign Up</a></span>
 	</div>
-
-
 
 </form>
 </div>

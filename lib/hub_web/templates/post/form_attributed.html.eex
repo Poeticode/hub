@@ -6,12 +6,6 @@
   <% end %>
 
 	<div class="mt3">
-		<label class="db fw6 lh-copy f6" for="post_author">Author</label>
-		<input class="pa2 input-reset ba bg-transparent w-100" id="post_author" name="post[author]" type="text" required>
-		<%= error_tag f, :author %>
-	</div>
-
-	<div class="mt3">
 		<label class="db fw6 lh-copy f6" for="post_title">Title</label>
 		<input class="pa2 input-reset ba bg-transparent w-100" id="post_title" name="post[title]" type="text" required>
 		<%= error_tag f, :title %>

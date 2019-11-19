@@ -1,8 +1,0 @@
-<div class="pl0 measure center tc pt4">
-	<h1 class="f1 lh-title">Welcome admin!</h1>
-  <p>This will have a list of posts/members awaiting approval</p>
-	<div class="admin_actions">
-			<a href="/admin/posts">Posts</a>,
-			<a href="/admin/members">Members</a>
-	</div>
-</div>

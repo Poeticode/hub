@@ -67,6 +67,12 @@ defmodule Hub.Content do
     |> Repo.insert()
   end
 
+  def create_attributed_post(attrs \\ %{}) do
+    %Post{}
+    |> Post.attributed_changeset(attrs)
+    |> Repo.insert()
+  end
+
   @doc """
   Updates a post.
 
@@ -87,7 +93,7 @@ defmodule Hub.Content do
 
 	def update_post_assoc(%Post{} = post, member) do
     post
-    |> Post.generic_changeset(%{})
+    |> Post.assoc_changeset(%{})
     |> Ecto.Changeset.put_change(:member_id, member.id)
     |> Repo.update()
   end

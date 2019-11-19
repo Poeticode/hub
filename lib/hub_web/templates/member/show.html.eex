@@ -3,6 +3,11 @@
 <ul>
 
   <li>
+    <strong>Email:</strong>
+    <%= @member.email%>
+  </li>
+  
+  <li>
     <strong>Name:</strong>
     <%= @member.name %>
   </li>
@@ -40,11 +45,6 @@
   <li>
     <strong>Bio:</strong>
     <%= @member.bio %>
-  </li>
-
-  <li>
-    <strong>Edit url:</strong>
-    <%= @member.edit_url %>
   </li>
 
 </ul>

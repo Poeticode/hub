@@ -48,7 +48,14 @@ defmodule Hub.Content.Post do
     end
   end
 
-	def generic_changeset(post, attrs) do
+  def attributed_changeset(post, attrs) do
+    post
+      |> cast(attrs, [:author, :title, :content, :attachment, :approved, :member_id])
+      |> validate_required([:author, :title, :content, :member_id])
+      |> put_attachment_file()
+  end
+
+	def assoc_changeset(post, attrs) do
 		post
     |> cast(attrs, [:member_id])
 	end

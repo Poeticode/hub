@@ -2,7 +2,7 @@
 <article class="pb5">
   <header class="tc-l ph3 ph4-ns pt4 pt5-ns">
     <h1 class="f3 f2-m f-subheadline-l measure lh-title fw1 mt0 mb3"><%= @post.title %></h1>
-    <span class="f5 f4-l db fw1 mb4"> by <%= @post.author %></span>
+    <span class="f5 f4-l db fw1 mb4"> by <a href="/members/<%= @post.member.id %>"><%= @post.author %></a></span>
 		<%= if @post.path do %>
 			<img class="w-100 dib measure f3" src="/uploads/<%= @post.path %>" />
 		<% end %>
