@@ -1,53 +1,55 @@
-<h1>Show Member</h1>
+<div class="measure center black-80">
+	<h2 ckass="f4 fw6 ph0 mh0">Show Member</h2>
 
-<ul>
+	<ul>
 
-  <li>
-    <strong>Email:</strong>
-    <%= @member.email%>
-  </li>
-  
-  <li>
-    <strong>Name:</strong>
-    <%= @member.name %>
-  </li>
+		<li>
+			<strong>Email:</strong>
+			<%= @member.email%>
+		</li>
 
-  <li>
-    <strong>Website:</strong>
-    <%= @member.website %>
-  </li>
+		<li>
+			<strong>Name:</strong>
+			<%= @member.name %>
+		</li>
 
-  <li>
-    <strong>Approved:</strong>
-    <%= @member.approved %>
-  </li>
+		<li>
+			<strong>Website:</strong>
+			<%= @member.website %>
+		</li>
 
-  <li>
-    <strong>Instagram:</strong>
-    <%= @member.instagram %>
-  </li>
+		<li>
+			<strong>Approved:</strong>
+			<%= @member.approved %>
+		</li>
 
-  <li>
-    <strong>Facebook:</strong>
-    <%= @member.facebook %>
-  </li>
+		<li>
+			<strong>Instagram:</strong>
+			<%= @member.instagram %>
+		</li>
 
-  <li>
-    <strong>Twitter:</strong>
-    <%= @member.twitter %>
-  </li>
+		<li>
+			<strong>Facebook:</strong>
+			<%= @member.facebook %>
+		</li>
 
-  <li>
-    <strong>Mastodon:</strong>
-    <%= @member.mastodon %>
-  </li>
+		<li>
+			<strong>Twitter:</strong>
+			<%= @member.twitter %>
+		</li>
 
-  <li>
-    <strong>Bio:</strong>
-    <%= @member.bio %>
-  </li>
+		<li>
+			<strong>Mastodon:</strong>
+			<%= @member.mastodon %>
+		</li>
 
-</ul>
+		<li>
+			<strong>Bio:</strong>
+			<%= @member.bio %>
+		</li>
 
-<span><%= link "Edit", to: Routes.member_path(@conn, :edit, @member) %></span>
-<span><%= link "Back", to: Routes.member_path(@conn, :index) %></span>
+	</ul>
+
+	<span><%= link "Edit", to: Routes.member_path(@conn, :edit, @member) %></span>
+	<span><%= link "Back", to: Routes.member_path(@conn, :index) %></span>
+</div>

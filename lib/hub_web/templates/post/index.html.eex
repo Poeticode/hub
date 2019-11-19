@@ -2,31 +2,48 @@
 	<h1>Listing Posts</h1>
 	<h5><a href="/backstage">Back</a><h4>
 
-	<table>
-		<thead>
-			<tr>
-				<th>Author</th>
-				<th>Title</th>
-				<th>Approved</th>
-				<th>Attachment</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-	<%= for post <- @posts do %>
-			<tr>
-				<td><%= post.author %></td>
-				<td><%= post.title %></td>
-				<Td><%= post.approved %></td>
-				<Td><%= post.filename %></td>
+	<div class="pa4">
+		<div class="overflow-auto">
+			<table class="f6 w-100 mw8 center" cellspacing="0">
+				<thead>
+					<tr class="stripe-dark">
+						<th class="fw6 tl pa3 bg-white">Author</th>
+						<th class="fw6 tl pa3 bg-white">Title</th>
+						<th class="fw6 tl pa3 bg-white">Approved</th>
+						<th class="fw6 tl pa3 bg-white">Attachment</th>
+					</tr>
+				</thead>
+				<tbody class="lh-copy">
 
-				<td>
-					<%= link "Show", to: Routes.post_path(@conn, :show, post) %>
-					<%= link "Edit", to: Routes.post_path(@conn, :edit, post) %>
-					<%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %>
-				</td>
-			</tr>
-	<% end %>
-		</tbody>
-	</table>
+				<%= for post <- @posts do %>
+					<tr class="stripe-dark">
+						<td class="pa3"><%= post.author %></td>
+						<td class="pa3"><%= post.title %></td>
+						<td class="pa3"><%= post.approved %></td>
+						<td class="pa3"><%= post.filename %></td>
+
+						<td class="pa3">
+							<%= link to: Routes.post_path(@conn, :show, post) do %>
+								<i class="fa-icon">
+									<%= SVGHelper.svg_image(@conn, "search", "font-awesome") %>
+								</i>
+							<% end %>
+							<%= link to: Routes.post_path(@conn, :edit, post) do %>
+								<i class="fa-icon">
+									<%= SVGHelper.svg_image(@conn, "pencil-alt", "font-awesome") %>
+								</i>
+							<% end %>
+							<%= link to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] do %>
+								<i class="fa-icon">
+									<%= SVGHelper.svg_image(@conn, "trash-alt", "font-awesome") %>
+								</i>
+							<% end %>
+
+						</td>
+					</tr>
+				<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

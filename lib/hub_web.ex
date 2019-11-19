@@ -37,11 +37,13 @@ defmodule HubWeb do
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
 
       # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
+			use Phoenix.HTML
+			use PhoenixInlineSvg.Helpers, otp_app: :hub
 
       import HubWeb.ErrorHelpers
       import HubWeb.Gettext
-      alias HubWeb.Router.Helpers, as: Routes
+			alias HubWeb.Router.Helpers, as: Routes
+			alias PhoenixInlineSvg.Helpers, as: SVGHelper
     end
   end
 

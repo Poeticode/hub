@@ -49,7 +49,8 @@ defmodule Hub.MixProject do
 			{:arc, "~> 0.11.0"},
 			{:arc_ecto, "~> 0.11.1"},
 			{:scrivener_ecto, "~> 2.0"},
-			{:scrivener_html, "~> 1.8"}
+			{:scrivener_html, "~> 1.8"},
+			{:phoenix_inline_svg, "~> 1.3"}
     ]
   end
 

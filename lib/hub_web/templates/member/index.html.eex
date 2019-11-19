@@ -2,32 +2,45 @@
 	<h1>Listing Members</h1>
 	<h5><a href="/backstage">Back</a><h4>
 
-	<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>ID</th>
-				<th>Email</th>
-				<th>Approved</th>
-				<th>Edit url</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-	<%= for member <- @members do %>
-			<tr>
-				<td><%= member.email %></td>
-				<td><%= member.name %></td>
-				<td><%= member.id %></td>
-				<td><%= member.approved %></td>
+	<div class="pa4">
+		<div class="overflow-auto;">
+			<table class="f6 w-100 mw8 center" cellspacing="0">
+				<thead>
+					<tr class="stripe-dark">
+						<th class="fw6 tl pa3 bg-white">Email</th>
+						<th class="fw6 tl pa3 bg-white">Name</th>
+						<th class="fw6 tl pa3 bg-white">Approved</th>
+					</tr>
+				</thead>
+				<tbody class="lh-copy">
 
-				<td>
-					<%= link "Show", to: Routes.member_path(@conn, :show, member) %>
-					<%= link "Edit", to: Routes.member_path(@conn, :edit, member) %>
-					<%= link "Delete", to: Routes.member_path(@conn, :delete, member), method: :delete, data: [confirm: "Are you sure?"] %>
-				</td>
-			</tr>
-	<% end %>
-		</tbody>
-	</table>
+				<%= for member <- @members do %>
+					<tr class="stripe-dark">
+						<td class="pa3"><%= member.email %></td>
+						<td class="pa3"><%= member.name %></td>
+						<td class="pa3"><%= member.approved %></td>
+
+						<td class="pa3">
+							<%= link to: Routes.member_path(@conn, :show, member) do %>
+								<i class="fa-icon">
+									<%= SVGHelper.svg_image(@conn, "search", "font-awesome") %>
+								</i>
+							<% end %>
+							<%= link to: Routes.member_path(@conn, :edit, member) do %>
+								<i class="fa-icon">
+									<%= SVGHelper.svg_image(@conn, "pencil-alt", "font-awesome") %>
+								</i>
+							<% end %>
+							<%= link to: Routes.member_path(@conn, :delete, member), method: :delete, data: [confirm: "Are you sure?"]  do %>
+								<i class="fa-icon">
+									<%= SVGHelper.svg_image(@conn, "trash-alt", "font-awesome") %>
+								</i>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

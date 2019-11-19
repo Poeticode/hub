@@ -76,3 +76,13 @@ a {
 }
 
 @import "../node_modules/tachyons/css/tachyons.css";
+
+.alert {
+	text-align: center;
+}
+
+table i.fa-icon {
+	width: 15px;
+	display: inline-block;
+	padding-left: 10px;
+}

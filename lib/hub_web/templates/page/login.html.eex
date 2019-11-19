@@ -2,6 +2,7 @@
 <form action="<%= Routes.member_path @conn, :sign_in %>" method="post" class="form-container form-login">
   <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
 
+	Alright, let's see those credentials.
 	<div class="mt3">
 		<input class="pa2 input-reset ba bg-transparent w-100" id="email" name="email" type="text" required placeholder="email" aria-label="enter your email">
 	</div>

@@ -34,18 +34,19 @@ defmodule HubWeb.MemberController do
       case Auth.create_member(member_params) do
 				{:ok, member} ->
 
-					if Application.get_env(:hub, :send_emails) do
-						Task.async(fn ->
-							# TODO: Have there be a list of emails that we'd send to
-							Hub.Email.new_member_email(member.name, "me@silentsilas.com")
-								|> Hub.Mailer.deliver_now
+					Task.async(fn ->
+						# TODO: Have there be a list of emails that we'd send to
+						Hub.Email.new_member_email(member.name, "me@silentsilas.com")
+							|> Hub.Mailer.deliver_now
 
-						end)
-					end
+						Hub.Email.member_welcome_email(member.email)
+							|> Hub.Mailer.deliver_now
+
+					end)
 
           conn
-						|> put_flash(:info, "Member created successfully.")
-						|> render("success.html", member: member)
+						|> put_flash(:info, "Successfully created your account!")
+						|> redirect(to: "/login")
 
         {:error, %Ecto.Changeset{} = changeset} ->
           render(conn, "new_unapproved.html", changeset: changeset)
@@ -123,7 +124,7 @@ defmodule HubWeb.MemberController do
     end
 	end
 
-  def general_update(conn, %{"id" => id,"member" => member_params} = params) do
+  def general_update(conn, %{"member" => member_params} = params) do
     current_member_id = get_session(conn, :current_member_id)
 		member = Auth.get_member!(current_member_id)
 		page = get_own_posts(member, params)
