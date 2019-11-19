@@ -3,12 +3,17 @@ defmodule HubWeb.PageController do
 	import Ecto.Query, warn: false
 	import Logger
 
-  def index(conn, params) do
-		# posts = Hub.Content.list_approved_posts()
-		page = Hub.Content.Post
-			|> where(approved: true)
-			|> Hub.Repo.paginate(params)
-    render(conn, "index.html", posts: page.entries, token: get_csrf_token(), page: page)
+	def index(conn, params) do
+		if get_session(conn, :current_admin_id) do
+			conn
+				|> redirect(to: "/backstage")
+		else
+			page = Hub.Content.Post
+				|> where(approved: true)
+				|> Hub.Repo.paginate(params)
+
+			render(conn, "index.html", posts: page.entries, token: get_csrf_token(), page: page)
+		end
 	end
 
 	def members_index(conn, params) do

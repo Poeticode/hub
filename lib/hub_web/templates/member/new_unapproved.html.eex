@@ -1,4 +1,4 @@
-<div class="measure center black-80">
+<div class="measure center black-80 pa4">
 	<h2 class="f4 fw6 ph0 mh0">New Member</h2>
 	<%= render "form_unapproved.html", Map.put(assigns, :action, Routes.member_path(@conn, :create_unapproved)) %>
 </div>

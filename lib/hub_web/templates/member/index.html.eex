@@ -2,25 +2,25 @@
 	<h1>Listing Members</h1>
 	<h5><a href="/backstage">Back</a><h4>
 
-	<div class="pa4">
+	<div class="pa2">
 		<div class="overflow-auto;">
 			<table class="f6 w-100 mw8 center" cellspacing="0">
 				<thead>
 					<tr class="stripe-dark">
-						<th class="fw6 tl pa3 bg-white">Email</th>
-						<th class="fw6 tl pa3 bg-white">Name</th>
-						<th class="fw6 tl pa3 bg-white">Approved</th>
+						<th class="fw6 tl pa1 bg-white tc">Email</th>
+						<th class="fw6 tl pa1 bg-white tc">Name</th>
+						<th class="fw6 tl pa1 bg-white tc">Approved</th>
 					</tr>
 				</thead>
 				<tbody class="lh-copy">
 
 				<%= for member <- @members do %>
 					<tr class="stripe-dark">
-						<td class="pa3"><%= member.email %></td>
-						<td class="pa3"><%= member.name %></td>
-						<td class="pa3"><%= member.approved %></td>
+						<td><%= member.email %></td>
+						<td><%= member.name %></td>
+						<td><%= member.approved %></td>
 
-						<td class="pa3">
+						<td style="min-width: 100px;">
 							<%= link to: Routes.member_path(@conn, :show, member) do %>
 								<i class="fa-icon">
 									<%= SVGHelper.svg_image(@conn, "search", "font-awesome") %>

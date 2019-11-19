@@ -1,4 +1,4 @@
-<div class="measure center black-80">
+<div class="measure center black-80 pa4">
 <form action="<%= Routes.admin_path @conn, :sign_in %>" method="post" class="form-container form-login">
   <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
 
