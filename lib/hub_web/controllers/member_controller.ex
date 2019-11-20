@@ -73,7 +73,7 @@ defmodule HubWeb.MemberController do
 
   def edit(conn, %{"id" => id}) do
     member = Auth.get_member!(id)
-    changeset = Auth.change_member(member)
+		changeset = Auth.change_pswdless_member(member)
     render(conn, "edit.html", member: member, changeset: changeset)
   end
 
@@ -89,7 +89,7 @@ defmodule HubWeb.MemberController do
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", member: member, changeset: changeset)
     end
-  end
+	end
 
   def delete(conn, %{"id" => id}) do
     member = Auth.get_member!(id)

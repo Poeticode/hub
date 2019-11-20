@@ -205,7 +205,7 @@ defmodule Hub.Auth do
       iex> delete_member(member)
       {:error, %Ecto.Changeset{}}
 
-  """
+	"""
   def delete_member(%Member{} = member) do
     Repo.delete(member)
   end
@@ -221,6 +221,10 @@ defmodule Hub.Auth do
   """
   def change_member(%Member{} = member) do
     Member.pswd_changeset(member, %{})
+	end
+
+	def change_pswdless_member(%Member{} = member) do
+		Member.pswdless_changeset(member, %{})
 	end
 
   def authenticate_member(email, password) do
