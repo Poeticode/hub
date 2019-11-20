@@ -28,6 +28,10 @@ config :arc,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :sentry, dsn: "https://c1f2d604e9c44440b0d0d23d8f99c11c@sentry.io/1827951",
+	included_environments: [:prod],
+	environment_name: Mix.env
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
