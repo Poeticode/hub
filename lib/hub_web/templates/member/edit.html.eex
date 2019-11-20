@@ -1,5 +1,10 @@
 <div class="measure center black-80">
 	<h2 class="f4 fw6 ph0 mh0">Edit Member</h2>
+	<%= if @member.avatar do %>
+		<img src="<%= Hub.Avatar.url({@member.avatar, @member}, :thumb) %>" />
+	<% else %>
+		(User has no avatar)
+	<% end %>
 	<%= render "form.html", Map.put(assigns, :action, Routes.member_path(@conn, :update, @member)) %>
 	<span><%= link "Back", to: Routes.member_path(@conn, :index) %></span>
 </div>

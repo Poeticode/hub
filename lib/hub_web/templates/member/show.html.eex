@@ -48,6 +48,15 @@
 			<%= @member.bio %>
 		</li>
 
+		<li>
+			<strong>Avatar</strong>
+			<%= if @member.avatar do %>
+				<img src="<%= Hub.Avatar.url({@member.avatar, @member}, :thumb) %>" />
+			<% else %>
+				N/A
+			<% end %>
+		</li>
+
 	</ul>
 
 	<span><%= link "Edit", to: Routes.member_path(@conn, :edit, @member) %></span>

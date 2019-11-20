@@ -14,7 +14,7 @@
 			<div class="fl w-100 w-25-ns pa2" style="text-align: center;">
 				<article class="mw5 bg-white br3 pa3 pa4-ns mv3 ba b--black-10 dib ml4" style="margin: auto; width: 100%;">
 					<div class="tc">
-						<a href="/members/<%= member.id %>"><div style="background:url('<%= Hub.Avatar.url({member.avatar, member}) %>') center no-repeat; background-size: cover;" class="circle_cropped br-100 h4 w4 dib ba b--black-05 pa2"></div></a>
+						<a href="/members/<%= member.id %>"><div style="background:url('<%= Hub.Avatar.url({member.avatar, member}, :thumb) %>') center no-repeat; background-size: cover;" class="circle_cropped br-100 h4 w4 dib ba b--black-05 pa2"></div></a>
 						<h1 class="f3 mb2"><%= member.name %></h1>
 						<h2 class="f5 fw4 gray mt0">Fellow Poet</h2>
 					</div>

@@ -3,7 +3,7 @@
 
 	<%= if @member.avatar do %>
 		<div class="pb3">
-			<div style="background:url('<%= Hub.Avatar.url({@member.avatar, @member}) %>') center no-repeat; background-size: cover;" class="circle_cropped br-100 h4 w4 dib ba b--black-05 pa2"></div>
+			<div style="background:url('<%= Hub.Avatar.url({@member.avatar, @member}, :thumb) %>') center no-repeat; background-size: cover;" class="circle_cropped br-100 h4 w4 dib ba b--black-05 pa2"></div>
 		</div>
 	<% else %>
 		<div class="pb3">
