@@ -21,6 +21,8 @@ defmodule Hub.Auth.Member do
 		field :filename, :string
 		field :path, :string
 		field :attachment, :any, virtual: true
+		field :reset_token, :string
+		field :reset_token_timestamp, :utc_datetime
 		field :avatar, Hub.Avatar.Type
 		has_many :posts, Hub.Content.Post, foreign_key: :member_id
 
@@ -48,6 +50,25 @@ defmodule Hub.Auth.Member do
 			|> cast(attrs, [:name, :email, :website, :approved, :instagram, :facebook, :twitter, :mastodon, :bio, :attachment])
 			|> cast_attachments(attrs, [:avatar])
 			|> validate_required([:name, :email, :approved, :bio])
+	end
+
+	def only_pswd_changeset(member, attrs) do
+		member
+			|> cast(attrs, [:reset_token, :reset_token_timestamp, :password])
+			|> validate_required([:reset_token, :reset_token_timestamp, :password])
+	end
+
+	def reset_pswd_changeset(member, attrs) do
+		member
+			|> cast(attrs, [:reset_token, :reset_token_timestamp, :password])
+			|> validate_required([:password])
+			|> put_password_hash()
+	end
+
+	def token_changeset(member, attrs) do
+		member
+			|> cast(attrs, [:reset_token, :reset_token_timestamp])
+			|> validate_required([:reset_token, :reset_token_timestamp])
 	end
 
   defp put_password_hash(

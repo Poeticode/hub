@@ -32,6 +32,13 @@ defmodule HubWeb.Router do
 
 		get "/signup", MemberController, :new_unapproved
 		post "/signup", MemberController, :create_unapproved
+
+		get "/reset-password", MemberController, :show_request_reset_password
+		post "/reset-password", MemberController, :request_reset_password
+		get "/reset-password/:token", MemberController, :show_reset_password
+		put "/reset-password/:token", MemberController, :reset_password
+		patch "/reset-password/:token", MemberController, :reset_password
+
 	end
 
 	scope "/api", HubWeb do

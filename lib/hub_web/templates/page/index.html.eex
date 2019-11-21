@@ -2,7 +2,7 @@
 	<div class="pa3">
 
 		<ul class="list pl0 measure center">
-			<h1 class="f1 lh-title">Submissions</h1>
+			<h1 class="f1 lh-title tc">Submissions</h1>
 			<%= for post <- @posts do %>
 
 				<li class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">

@@ -150,7 +150,17 @@ defmodule Hub.Auth do
       ** (Ecto.NoResultsError)
 
   """
-  def get_member!(id), do: Repo.get!(Member, id)
+	def get_member!(id), do: Repo.get!(Member, id)
+
+	def get_member_by_email(email) do
+    query = from(a in Member, where: a.email == ^email)
+    query |> Repo.one()
+	end
+
+	def get_member_by_token(token) do
+		query = from(a in Member, where: a.reset_token == ^token)
+		query |> Repo.one()
+	end
 
   @doc """
   Creates a member.
@@ -194,6 +204,24 @@ defmodule Hub.Auth do
 		|> Repo.update()
 	end
 
+	def update_member_token(%Member{} = member, attrs) do
+		member
+		|> Member.token_changeset(attrs)
+		|> Repo.update()
+	end
+
+	def update_member_only_pswd(%Member{} = member, attrs) do
+		member
+			|> Member.only_pswd_changeset(attrs)
+			|> Repo.update()
+	end
+
+	def update_member_reset_pswd(%Member{} = member, attrs) do
+		member
+			|> Member.reset_pswd_changeset(attrs)
+			|> Repo.update()
+	end
+
   @doc """
   Deletes a Member.
 
@@ -225,6 +253,14 @@ defmodule Hub.Auth do
 
 	def change_pswdless_member(%Member{} = member) do
 		Member.pswdless_changeset(member, %{})
+	end
+
+	def change_only_pswd(%Member{} = member) do
+		Member.only_pswd_changeset(member, %{})
+	end
+
+	def change_token_member() do
+		Member.token_changeset(%Member{}, %{})
 	end
 
   def authenticate_member(email, password) do

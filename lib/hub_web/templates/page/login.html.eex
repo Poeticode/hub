@@ -15,7 +15,9 @@
 		<span>or <a href="/signup">Join Us</a></span>
 	</div>
 
-
+	<div class="pl0 measure center tc pt4">
+		<span>Don't tell me you <a href="/reset-password">forgot your password</a> again.</span>
+	</div>
 
 </form>
 </div>

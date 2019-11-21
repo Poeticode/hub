@@ -35,6 +35,15 @@ defmodule Hub.Email do
 		|> add_dynamic_field(:url, "#{site_url}login")
 	end
 
+	def password_reset_email(recipient, token) do
+		site_url = "#{Application.get_env(:hub, :site_url)}reset-password/#{token}"
+		base_email()
+			|> to(recipient)
+			|> with_template(Application.get_env(:hub, :sendgrid_reset_password_template_id))
+			|> add_dynamic_field(:url, site_url)
+			|> add_dynamic_field(:site_name, "Poetry, Pups, and Pints")
+	end
+
 	defp base_email do
     new_email
     |> from("Poetry, Pups, and Pints <me@silentsilas.com>")

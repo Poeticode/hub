@@ -191,4 +191,107 @@ defmodule HubWeb.MemberController do
 			|> where(approved: true)
 			|> Hub.Repo.paginate(params)
 	end
+
+	# Begin Password Reset
+	def show_request_reset_password(conn, _params) do
+		changeset = Auth.change_token_member()
+
+    render(conn, "password_reset_request.html", changeset: changeset, csrf_token: get_session(conn, :csrf_token))
+  end
+
+	def request_reset_password(conn, %{"member" => member_params}) do
+    # first we'll need to see if this email has an account
+    member = Auth.get_member_by_email(member_params["email"])
+
+		if member do
+			new_reset_token = Ecto.UUID.generate()
+
+			member_params =
+				Map.put(member_params, "reset_token", new_reset_token)
+
+			member_params =
+				Map.put(member_params, "reset_token_timestamp", DateTime.utc_now)
+
+			case Auth.update_member_token(member, member_params) do
+
+				{:ok, member} ->
+					# TODO: later down the road, we could queue up emails and batch-send them
+					Task.async(fn ->
+						Hub.Email.password_reset_email(member_params["email"], new_reset_token)
+						|> Hub.Mailer.deliver_now
+					end)
+
+					Logger.debug("actually successful")
+
+					conn
+						|> put_status(:ok)
+						|> render("password_reset_request_success.html")
+
+				{:error, %Ecto.Changeset{} = changeset} ->
+					conn
+						|> put_status(:ok)
+						|> render("password_reset_request_success.html")
+			end
+    else
+      conn
+				|> put_status(:ok)
+				|> render("password_reset_request_success.html")
+    end
+	end
+
+	def show_reset_password(conn, %{"token" => token}) do
+
+		member = Auth.get_member_by_token(token)
+
+		if member do
+			# now check to see if token has expired or not
+			current_time = DateTime.utc_now()
+			elapsed_seconds = DateTime.diff(current_time, member.reset_token_timestamp)
+
+			# We'll see if it's been no longer than 6 hours
+			if elapsed_seconds < 60 * 60 * 6 do
+				changeset = Auth.change_only_pswd(member)
+				render(conn, "password_reset.html", changeset: changeset, member: member, csrf_token: get_session(conn, :csrf_token), token: token)
+			else
+				conn
+					|> render("password_reset_fail.html")
+			end
+		else
+			conn
+				|> render("password_reset_fail.html")
+		end
+	end
+
+	def reset_password(conn, %{
+			"token" => token,
+			"member" => params
+		}) do
+
+		member = Auth.get_member_by_token(token)
+
+		if member do
+			# now check to see if token has expired or not
+			current_time = DateTime.utc_now()
+			elapsed_seconds = DateTime.diff(current_time, member.reset_token_timestamp)
+
+			if elapsed_seconds < 60 * 60 * 6 do
+				member_params = %{
+					password: params["password"],
+					reset_token: nil
+				}
+				case Auth.update_member_reset_pswd(member, member_params) do
+					{:ok, %Member{} = member} ->
+						render(conn, "password_reset_success.html")
+					{:error, %Ecto.Changeset{} = changeset} ->
+						Logger.debug(inspect(changeset))
+						render(conn, "password_reset.html", member: member, changeset: changeset, csrf_token: get_session(conn, :csrf_token), token: token)
+				end
+			else
+				render(conn, "password_reset_fail.html")
+			end
+		else
+			render(conn, "password_reset_fail.html")
+		end
+	end
+
 end
